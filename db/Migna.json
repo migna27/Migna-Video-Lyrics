@@ -1,0 +1,2645 @@
+{
+    "version": "1.0",
+    "type": "video-lyrics-desktop",
+    "timestamp": 1772853895.3128774,
+    "name": "Migna",
+    "lyricData": {
+        "segments": [
+            {
+                "end": 4.05,
+                "id": "0",
+                "section": "verse",
+                "start": 0.05,
+                "text": "",
+                "words": []
+            },
+            {
+                "end": 12.88,
+                "id": "1",
+                "start": 4.11,
+                "text": "SON LAS 3 Y\n10 DE LA MA\u00d1ANA",
+                "words": [
+                    {
+                        "end": 10.96,
+                        "line_number": 0,
+                        "probability": 0.96954757,
+                        "start": 10.11,
+                        "word": "SON"
+                    },
+                    {
+                        "end": 11.45,
+                        "line_number": 0,
+                        "probability": 0.99983025,
+                        "start": 10.96,
+                        "word": "LAS"
+                    },
+                    {
+                        "end": 11.62,
+                        "line_number": 0,
+                        "probability": 0.83988047,
+                        "start": 11.45,
+                        "word": "3"
+                    },
+                    {
+                        "end": 11.81,
+                        "line_number": 0,
+                        "probability": 0.98553914,
+                        "start": 11.62,
+                        "word": "Y"
+                    },
+                    {
+                        "end": 12,
+                        "line_number": 1,
+                        "probability": 0.9998665,
+                        "start": 11.81,
+                        "word": "10"
+                    },
+                    {
+                        "end": 12.11,
+                        "line_number": 1,
+                        "probability": 0.99613744,
+                        "start": 12,
+                        "word": "DE"
+                    },
+                    {
+                        "end": 12.38,
+                        "line_number": 1,
+                        "probability": 0.99987984,
+                        "start": 12.11,
+                        "word": "LA"
+                    },
+                    {
+                        "end": 12.88,
+                        "line_number": 1,
+                        "probability": 0.9979174,
+                        "start": 12.38,
+                        "word": "MA\u00d1ANA"
+                    }
+                ]
+            },
+            {
+                "end": 15.39,
+                "id": "2",
+                "start": 12.93,
+                "text": "LA LUZ DE TU\nMENSAJE EN MI\nCARA",
+                "words": [
+                    {
+                        "end": 13.6,
+                        "line_number": 0,
+                        "probability": 0.9852084,
+                        "start": 12.93,
+                        "word": "LA"
+                    },
+                    {
+                        "end": 13.78,
+                        "line_number": 0,
+                        "probability": 0.9997521,
+                        "start": 13.6,
+                        "word": "LUZ"
+                    },
+                    {
+                        "end": 13.89,
+                        "line_number": 0,
+                        "probability": 0.9963313,
+                        "start": 13.78,
+                        "word": "DE"
+                    },
+                    {
+                        "end": 14.05,
+                        "line_number": 0,
+                        "probability": 0.9997464,
+                        "start": 13.89,
+                        "word": "TU"
+                    },
+                    {
+                        "end": 14.55,
+                        "line_number": 1,
+                        "probability": 0.99980164,
+                        "start": 14.05,
+                        "word": "MENSAJE"
+                    },
+                    {
+                        "end": 14.69,
+                        "line_number": 1,
+                        "probability": 0.9505881,
+                        "start": 14.55,
+                        "word": "EN"
+                    },
+                    {
+                        "end": 14.95,
+                        "line_number": 1,
+                        "probability": 0.9996491,
+                        "start": 14.69,
+                        "word": "MI"
+                    },
+                    {
+                        "end": 15.39,
+                        "line_number": 2,
+                        "probability": 0.99821824,
+                        "start": 14.95,
+                        "word": "CARA"
+                    }
+                ]
+            },
+            {
+                "end": 17.64,
+                "id": "3",
+                "start": 15.45,
+                "text": "LO ANALIZO TODO\nCADA PUTO PIXEL",
+                "words": [
+                    {
+                        "end": 15.72,
+                        "line_number": 0,
+                        "probability": 0.9988448,
+                        "start": 15.45,
+                        "word": "LO"
+                    },
+                    {
+                        "end": 16.25,
+                        "line_number": 0,
+                        "probability": 0.99880296,
+                        "start": 15.72,
+                        "word": "ANALIZO"
+                    },
+                    {
+                        "end": 16.52,
+                        "line_number": 0,
+                        "probability": 0.76284134,
+                        "start": 16.25,
+                        "word": "TODO"
+                    },
+                    {
+                        "end": 16.8,
+                        "line_number": 1,
+                        "probability": 0.99929833,
+                        "start": 16.52,
+                        "word": "CADA"
+                    },
+                    {
+                        "end": 17.25,
+                        "line_number": 1,
+                        "probability": 0.9940785,
+                        "start": 16.8,
+                        "word": "PUTO"
+                    },
+                    {
+                        "end": 17.64,
+                        "line_number": 1,
+                        "probability": 0.6680821,
+                        "start": 17.25,
+                        "word": "PIXEL"
+                    }
+                ]
+            },
+            {
+                "end": 20.57,
+                "id": "4",
+                "start": 17.69,
+                "text": "EL TIEMPO QUE\nTARDASTE LA\nPALABRA EXACTA",
+                "words": [
+                    {
+                        "end": 18.1,
+                        "line_number": 0,
+                        "probability": 0.9991078,
+                        "start": 17.69,
+                        "word": "EL"
+                    },
+                    {
+                        "end": 18.43,
+                        "line_number": 0,
+                        "probability": 0.9997692,
+                        "start": 18.1,
+                        "word": "TIEMPO"
+                    },
+                    {
+                        "end": 18.63,
+                        "line_number": 0,
+                        "probability": 0.9999218,
+                        "start": 18.43,
+                        "word": "QUE"
+                    },
+                    {
+                        "end": 19.06,
+                        "line_number": 1,
+                        "probability": 0.8177511,
+                        "start": 18.63,
+                        "word": "TARDASTE"
+                    },
+                    {
+                        "end": 19.32,
+                        "line_number": 1,
+                        "probability": 0.9997654,
+                        "start": 19.06,
+                        "word": "LA"
+                    },
+                    {
+                        "end": 19.78,
+                        "line_number": 2,
+                        "probability": 0.9995061,
+                        "start": 19.32,
+                        "word": "PALABRA"
+                    },
+                    {
+                        "end": 20.57,
+                        "line_number": 2,
+                        "probability": 0.9970921,
+                        "start": 19.78,
+                        "word": "EXACTA"
+                    }
+                ]
+            },
+            {
+                "end": 23.51,
+                "id": "5",
+                "start": 20.65,
+                "text": "CADA EMOJI ES UN\nC\u00d3DIGO QUE\nINTENTO REVENTAR",
+                "words": [
+                    {
+                        "end": 21.2,
+                        "line_number": 0,
+                        "probability": 0.99878,
+                        "start": 20.65,
+                        "word": "CADA"
+                    },
+                    {
+                        "end": 21.5,
+                        "line_number": 0,
+                        "probability": 0.997807,
+                        "start": 21.2,
+                        "word": "EMOJI"
+                    },
+                    {
+                        "end": 21.72,
+                        "line_number": 0,
+                        "probability": 0.9976034,
+                        "start": 21.5,
+                        "word": "ES"
+                    },
+                    {
+                        "end": 21.95,
+                        "line_number": 0,
+                        "probability": 0.999773,
+                        "start": 21.72,
+                        "word": "UN"
+                    },
+                    {
+                        "end": 22.26,
+                        "line_number": 1,
+                        "probability": 0.9981268,
+                        "start": 21.95,
+                        "word": "C\u00d3DIGO"
+                    },
+                    {
+                        "end": 22.5,
+                        "line_number": 1,
+                        "probability": 0.96532565,
+                        "start": 22.26,
+                        "word": "QUE"
+                    },
+                    {
+                        "end": 22.85,
+                        "line_number": 2,
+                        "probability": 0.99889475,
+                        "start": 22.5,
+                        "word": "INTENTO"
+                    },
+                    {
+                        "end": 23.51,
+                        "line_number": 2,
+                        "probability": 0.9994402,
+                        "start": 22.85,
+                        "word": "REVENTAR"
+                    }
+                ]
+            },
+            {
+                "end": 26.02,
+                "id": "6",
+                "start": 23.57,
+                "text": "ES SOLO CORTES\u00cdA\nO ME EST\u00c1S\nQUERIENDO HABLAR",
+                "words": [
+                    {
+                        "end": 23.84,
+                        "line_number": 0,
+                        "probability": 0.8657234,
+                        "start": 23.57,
+                        "word": "ES"
+                    },
+                    {
+                        "end": 24.08,
+                        "line_number": 0,
+                        "probability": 0.99073535,
+                        "start": 23.84,
+                        "word": "SOLO"
+                    },
+                    {
+                        "end": 24.7,
+                        "line_number": 0,
+                        "probability": 0.99963397,
+                        "start": 24.08,
+                        "word": "CORTES\u00cdA"
+                    },
+                    {
+                        "end": 24.84,
+                        "line_number": 1,
+                        "probability": 0.97150236,
+                        "start": 24.7,
+                        "word": "O"
+                    },
+                    {
+                        "end": 25.01,
+                        "line_number": 1,
+                        "probability": 0.99926025,
+                        "start": 24.84,
+                        "word": "ME"
+                    },
+                    {
+                        "end": 25.2,
+                        "line_number": 1,
+                        "probability": 0.98499984,
+                        "start": 25.01,
+                        "word": "EST\u00c1S"
+                    },
+                    {
+                        "end": 25.59,
+                        "line_number": 2,
+                        "probability": 0.99963105,
+                        "start": 25.2,
+                        "word": "QUERIENDO"
+                    },
+                    {
+                        "end": 26.02,
+                        "line_number": 2,
+                        "probability": 0.997828,
+                        "start": 25.59,
+                        "word": "HABLAR"
+                    }
+                ]
+            },
+            {
+                "end": 33.62,
+                "id": "7",
+                "start": 29.57,
+                "text": "MI LADO ADICTO\nDICE ESA ES LA\nSE\u00d1AL",
+                "words": [
+                    {
+                        "end": 30.07625,
+                        "line_number": 0,
+                        "probability": 1,
+                        "start": 29.57,
+                        "word": "MI"
+                    },
+                    {
+                        "end": 30.582500000000003,
+                        "line_number": 0,
+                        "probability": 1,
+                        "start": 30.07625,
+                        "word": "LADO"
+                    },
+                    {
+                        "end": 31.088749999999997,
+                        "line_number": 0,
+                        "probability": 1,
+                        "start": 30.5825,
+                        "word": "ADICTO"
+                    },
+                    {
+                        "end": 31.595,
+                        "line_number": 1,
+                        "probability": 1,
+                        "start": 31.088749999999997,
+                        "word": "DICE"
+                    },
+                    {
+                        "end": 32.10125,
+                        "line_number": 1,
+                        "probability": 1,
+                        "start": 31.595,
+                        "word": "ESA"
+                    },
+                    {
+                        "end": 32.6075,
+                        "line_number": 1,
+                        "probability": 1,
+                        "start": 32.10125,
+                        "word": "ES"
+                    },
+                    {
+                        "end": 33.113749999999996,
+                        "line_number": 1,
+                        "probability": 1,
+                        "start": 32.6075,
+                        "word": "LA"
+                    },
+                    {
+                        "end": 33.62,
+                        "line_number": 2,
+                        "probability": 1,
+                        "start": 33.113749999999996,
+                        "word": "SE\u00d1AL"
+                    }
+                ]
+            },
+            {
+                "end": 38.74,
+                "id": "8",
+                "section": "bridge",
+                "start": 33.67,
+                "text": "MI LADO HERIDO\nGRITA ESTO TE\nVA A HACER MAL",
+                "words": [
+                    {
+                        "end": 34.177,
+                        "line_number": 0,
+                        "probability": 1,
+                        "start": 33.67,
+                        "word": "MI"
+                    },
+                    {
+                        "end": 34.684,
+                        "line_number": 0,
+                        "probability": 1,
+                        "start": 34.177,
+                        "word": "LADO"
+                    },
+                    {
+                        "end": 35.191,
+                        "line_number": 0,
+                        "probability": 1,
+                        "start": 34.684000000000005,
+                        "word": "HERIDO"
+                    },
+                    {
+                        "end": 35.698,
+                        "line_number": 1,
+                        "probability": 1,
+                        "start": 35.191,
+                        "word": "GRITA"
+                    },
+                    {
+                        "end": 36.205,
+                        "line_number": 1,
+                        "probability": 1,
+                        "start": 35.698,
+                        "word": "ESTO"
+                    },
+                    {
+                        "end": 36.711999999999996,
+                        "line_number": 1,
+                        "probability": 1,
+                        "start": 36.205,
+                        "word": "TE"
+                    },
+                    {
+                        "end": 37.219,
+                        "line_number": 2,
+                        "probability": 1,
+                        "start": 36.712,
+                        "word": "VA"
+                    },
+                    {
+                        "end": 37.726,
+                        "line_number": 2,
+                        "probability": 1,
+                        "start": 37.219,
+                        "word": "A"
+                    },
+                    {
+                        "end": 38.233,
+                        "line_number": 2,
+                        "probability": 1,
+                        "start": 37.726,
+                        "word": "HACER"
+                    },
+                    {
+                        "end": 38.74,
+                        "line_number": 2,
+                        "probability": 1,
+                        "start": 38.233000000000004,
+                        "word": "MAL"
+                    }
+                ]
+            },
+            {
+                "end": 43.57,
+                "id": "9",
+                "start": 38.79,
+                "text": "ESTOY BUSCANDO\nPRUEBAS EN LA\nCONVERSACI\u00d3N",
+                "words": [
+                    {
+                        "end": 40.099,
+                        "line_number": 0,
+                        "probability": 0.98308533,
+                        "start": 38.79,
+                        "word": "ESTOY"
+                    },
+                    {
+                        "end": 40.62,
+                        "line_number": 0,
+                        "probability": 0.9999218,
+                        "start": 40.099,
+                        "word": "BUSCANDO"
+                    },
+                    {
+                        "end": 41.63,
+                        "line_number": 1,
+                        "probability": 0.9999647,
+                        "start": 40.62,
+                        "word": "PRUEBAS"
+                    },
+                    {
+                        "end": 41.9,
+                        "line_number": 1,
+                        "probability": 0.999672,
+                        "start": 41.63,
+                        "word": "EN"
+                    },
+                    {
+                        "end": 42.3,
+                        "line_number": 1,
+                        "probability": 0.9999428,
+                        "start": 41.9,
+                        "word": "LA"
+                    },
+                    {
+                        "end": 43.57,
+                        "line_number": 2,
+                        "probability": 0.9999199,
+                        "start": 42.3,
+                        "word": "CONVERSACI\u00d3N"
+                    }
+                ]
+            },
+            {
+                "end": 47.56,
+                "id": "10",
+                "start": 43.63,
+                "text": "UNA GRIETA EN EL\nMURO DE TU\nPERFECTA",
+                "words": [
+                    {
+                        "end": 44.42,
+                        "line_number": 0,
+                        "probability": 0.9989058,
+                        "start": 43.63,
+                        "word": "UNA"
+                    },
+                    {
+                        "end": 44.92,
+                        "line_number": 0,
+                        "probability": 0.9992832,
+                        "start": 44.42,
+                        "word": "GRIETA"
+                    },
+                    {
+                        "end": 45.16,
+                        "line_number": 0,
+                        "probability": 0.9999428,
+                        "start": 44.92,
+                        "word": "EN"
+                    },
+                    {
+                        "end": 45.379,
+                        "line_number": 0,
+                        "probability": 0.9999695,
+                        "start": 45.16,
+                        "word": "EL"
+                    },
+                    {
+                        "end": 45.96,
+                        "line_number": 1,
+                        "probability": 0.99984264,
+                        "start": 45.379,
+                        "word": "MURO"
+                    },
+                    {
+                        "end": 46.26,
+                        "line_number": 1,
+                        "probability": 0.9992469,
+                        "start": 45.96,
+                        "word": "DE"
+                    },
+                    {
+                        "end": 46.74,
+                        "line_number": 1,
+                        "probability": 0.99988747,
+                        "start": 46.26,
+                        "word": "TU"
+                    },
+                    {
+                        "end": 47.56,
+                        "line_number": 2,
+                        "probability": 0.99991703,
+                        "start": 46.74,
+                        "word": "PERFECTA"
+                    }
+                ]
+            },
+            {
+                "end": 48.92,
+                "id": "11",
+                "start": 47.56,
+                "text": "ACTUACI\u00d3N",
+                "words": [
+                    {
+                        "end": 48.92,
+                        "line_number": 3,
+                        "probability": 0.99965775,
+                        "start": 47.56,
+                        "word": "ACTUACI\u00d3N"
+                    }
+                ]
+            },
+            {
+                "end": 53.5,
+                "id": "12",
+                "section": "chorus",
+                "start": 48.97,
+                "text": "Y BAILO CON TU\nSOMBRA EN MI\nHABITACI\u00d3N",
+                "words": [
+                    {
+                        "end": 51.46,
+                        "line_number": 0,
+                        "probability": 0.98246115,
+                        "start": 50.7,
+                        "word": "Y"
+                    },
+                    {
+                        "end": 51.75,
+                        "line_number": 0,
+                        "probability": 0.9993279,
+                        "start": 51.46,
+                        "word": "BAILO"
+                    },
+                    {
+                        "end": 51.879,
+                        "line_number": 0,
+                        "probability": 0.9999294,
+                        "start": 51.75,
+                        "word": "CON"
+                    },
+                    {
+                        "end": 52.04,
+                        "line_number": 0,
+                        "probability": 0.975554,
+                        "start": 51.879,
+                        "word": "TU"
+                    },
+                    {
+                        "end": 52.42,
+                        "line_number": 1,
+                        "probability": 0.9993223,
+                        "start": 52.04,
+                        "word": "SOMBRA"
+                    },
+                    {
+                        "end": 52.52,
+                        "line_number": 1,
+                        "probability": 0.99978065,
+                        "start": 52.42,
+                        "word": "EN"
+                    },
+                    {
+                        "end": 52.7,
+                        "line_number": 1,
+                        "probability": 0.9779927,
+                        "start": 52.52,
+                        "word": "MI"
+                    },
+                    {
+                        "end": 53.5,
+                        "line_number": 2,
+                        "probability": 0.9999256,
+                        "start": 52.7,
+                        "word": "HABITACI\u00d3N"
+                    }
+                ]
+            },
+            {
+                "end": 58.56,
+                "id": "13",
+                "start": 56.45,
+                "text": "CREANDO\nESPEJISMOS DE UN\nTU Y YO",
+                "words": [
+                    {
+                        "end": 56.75142857142857,
+                        "line_number": 0,
+                        "probability": 1,
+                        "start": 56.45,
+                        "word": "CREANDO"
+                    },
+                    {
+                        "end": 57.05285714285714,
+                        "line_number": 1,
+                        "probability": 1,
+                        "start": 56.75142857142857,
+                        "word": "ESPEJISMOS"
+                    },
+                    {
+                        "end": 57.35428571428571,
+                        "line_number": 1,
+                        "probability": 1,
+                        "start": 57.05285714285714,
+                        "word": "DE"
+                    },
+                    {
+                        "end": 57.655714285714296,
+                        "line_number": 1,
+                        "probability": 1,
+                        "start": 57.35428571428571,
+                        "word": "UN"
+                    },
+                    {
+                        "end": 57.95714285714286,
+                        "line_number": 2,
+                        "probability": 1,
+                        "start": 57.655714285714296,
+                        "word": "TU"
+                    },
+                    {
+                        "end": 57.95837067209776,
+                        "line_number": 2,
+                        "probability": 1,
+                        "start": 57.95714285714286,
+                        "word": "Y"
+                    },
+                    {
+                        "end": 57.95837067209776,
+                        "line_number": 2,
+                        "probability": 1,
+                        "start": 58.258571428571436,
+                        "word": "YO"
+                    }
+                ]
+            },
+            {
+                "end": 63.51,
+                "id": "14",
+                "start": 58.61,
+                "text": "CADA JAJA ES UNA\nALUCINACI\u00d3N",
+                "words": [
+                    {
+                        "end": 61.37,
+                        "line_number": 0,
+                        "probability": 0.9971069,
+                        "start": 61,
+                        "word": "CADA"
+                    },
+                    {
+                        "end": 61.8,
+                        "line_number": 0,
+                        "probability": 0.9726573,
+                        "start": 61.37,
+                        "word": "JAJA"
+                    },
+                    {
+                        "end": 62.15,
+                        "line_number": 0,
+                        "probability": 0.9985953,
+                        "start": 61.8,
+                        "word": "ES"
+                    },
+                    {
+                        "end": 62.42,
+                        "line_number": 0,
+                        "probability": 0.96299565,
+                        "start": 62.15,
+                        "word": "UNA"
+                    },
+                    {
+                        "end": 63.51,
+                        "line_number": 1,
+                        "probability": 0.99765354,
+                        "start": 62.42,
+                        "word": "ALUCINACI\u00d3N"
+                    }
+                ]
+            },
+            {
+                "end": 65.54,
+                "id": "15",
+                "start": 63.57,
+                "text": "ME DAS UNA\nMIGAJA Y\nCONSTRUYO UNA",
+                "words": [
+                    {
+                        "end": 63.94,
+                        "line_number": 0,
+                        "probability": 0.9921309,
+                        "start": 63.57,
+                        "word": "ME"
+                    },
+                    {
+                        "end": 64.15,
+                        "line_number": 0,
+                        "probability": 0.998144,
+                        "start": 63.94,
+                        "word": "DAS"
+                    },
+                    {
+                        "end": 64.379,
+                        "line_number": 0,
+                        "probability": 0.925184,
+                        "start": 64.15,
+                        "word": "UNA"
+                    },
+                    {
+                        "end": 64.78,
+                        "line_number": 1,
+                        "probability": 0.9931255,
+                        "start": 64.379,
+                        "word": "MIGAJA"
+                    },
+                    {
+                        "end": 64.94,
+                        "line_number": 1,
+                        "probability": 0.99818015,
+                        "start": 64.78,
+                        "word": "Y"
+                    },
+                    {
+                        "end": 65.319,
+                        "line_number": 2,
+                        "probability": 0.98999536,
+                        "start": 64.94,
+                        "word": "CONSTRUYO"
+                    },
+                    {
+                        "end": 65.54,
+                        "line_number": 2,
+                        "probability": 0.99396056,
+                        "start": 65.319,
+                        "word": "UNA"
+                    }
+                ]
+            },
+            {
+                "end": 66.06,
+                "id": "16",
+                "start": 65.54,
+                "text": "MANSI\u00d3N",
+                "words": [
+                    {
+                        "end": 66.06,
+                        "line_number": 3,
+                        "probability": 0.99117017,
+                        "start": 65.54,
+                        "word": "MANSI\u00d3N"
+                    }
+                ]
+            },
+            {
+                "end": 68.74,
+                "id": "17",
+                "start": 66.11,
+                "text": "ME AFERRO A ESTE\nVENENO A LA\nDULCE ADICCI\u00d3N",
+                "words": [
+                    {
+                        "end": 66.38,
+                        "line_number": 0,
+                        "probability": 0.9937426,
+                        "start": 66.11,
+                        "word": "ME"
+                    },
+                    {
+                        "end": 66.71,
+                        "line_number": 0,
+                        "probability": 0.99933404,
+                        "start": 66.38,
+                        "word": "AFERRO"
+                    },
+                    {
+                        "end": 66.78,
+                        "line_number": 0,
+                        "probability": 0.9866808,
+                        "start": 66.71,
+                        "word": "A"
+                    },
+                    {
+                        "end": 66.93,
+                        "line_number": 0,
+                        "probability": 0.9985743,
+                        "start": 66.78,
+                        "word": "ESTE"
+                    },
+                    {
+                        "end": 67.37,
+                        "line_number": 1,
+                        "probability": 0.9422865,
+                        "start": 66.93,
+                        "word": "VENENO"
+                    },
+                    {
+                        "end": 67.43,
+                        "line_number": 1,
+                        "probability": 0.99250567,
+                        "start": 67.37,
+                        "word": "A"
+                    },
+                    {
+                        "end": 67.57,
+                        "line_number": 1,
+                        "probability": 0.9997997,
+                        "start": 67.43,
+                        "word": "LA"
+                    },
+                    {
+                        "end": 67.93,
+                        "line_number": 2,
+                        "probability": 0.9996129,
+                        "start": 67.57,
+                        "word": "DULCE"
+                    },
+                    {
+                        "end": 68.74,
+                        "line_number": 2,
+                        "probability": 0.9993679,
+                        "start": 67.93,
+                        "word": "ADICCI\u00d3N"
+                    }
+                ]
+            },
+            {
+                "end": 73.68,
+                "id": "18",
+                "start": 68.79,
+                "text": "DE QUE EN TU\nCAOS YO SOY LA\n\u00daNICA OPCI\u00d3N",
+                "words": [
+                    {
+                        "end": 69.22,
+                        "line_number": 0,
+                        "probability": 0.98549026,
+                        "start": 68.79,
+                        "word": "DE"
+                    },
+                    {
+                        "end": 69.38,
+                        "line_number": 0,
+                        "probability": 0.99809825,
+                        "start": 69.22,
+                        "word": "QUE"
+                    },
+                    {
+                        "end": 69.49,
+                        "line_number": 0,
+                        "probability": 0.99923164,
+                        "start": 69.38,
+                        "word": "EN"
+                    },
+                    {
+                        "end": 69.61,
+                        "line_number": 0,
+                        "probability": 0.99988556,
+                        "start": 69.49,
+                        "word": "TU"
+                    },
+                    {
+                        "end": 70.44,
+                        "line_number": 1,
+                        "probability": 0.8599348,
+                        "start": 69.61,
+                        "word": "CAOS"
+                    },
+                    {
+                        "end": 70.82,
+                        "line_number": 1,
+                        "probability": 0.9986505,
+                        "start": 70.44,
+                        "word": "YO"
+                    },
+                    {
+                        "end": 71.31,
+                        "line_number": 1,
+                        "probability": 0.9992431,
+                        "start": 70.82,
+                        "word": "SOY"
+                    },
+                    {
+                        "end": 72.03,
+                        "line_number": 1,
+                        "probability": 0.99614316,
+                        "start": 71.31,
+                        "word": "LA"
+                    },
+                    {
+                        "end": 72.81,
+                        "line_number": 2,
+                        "probability": 0.996605,
+                        "start": 72.03,
+                        "word": "\u00daNICA"
+                    },
+                    {
+                        "end": 73.68,
+                        "line_number": 2,
+                        "probability": 0.9988302,
+                        "start": 72.81,
+                        "word": "OPCI\u00d3N"
+                    }
+                ]
+            },
+            {
+                "end": 85.68,
+                "id": "19",
+                "section": "verse",
+                "start": 83.25,
+                "text": "ME ROZAS EL\nBRAZO CUANDO TE\nR\u00cdES DE ALGO",
+                "words": [
+                    {
+                        "end": 83.55,
+                        "line_number": 0,
+                        "probability": 0.9229474,
+                        "start": 83.25,
+                        "word": "ME"
+                    },
+                    {
+                        "end": 83.87,
+                        "line_number": 0,
+                        "probability": 0.89475334,
+                        "start": 83.55,
+                        "word": "ROZAS"
+                    },
+                    {
+                        "end": 84.02,
+                        "line_number": 0,
+                        "probability": 0.91432333,
+                        "start": 83.87,
+                        "word": "EL"
+                    },
+                    {
+                        "end": 84.35,
+                        "line_number": 1,
+                        "probability": 0.9980519,
+                        "start": 84.02,
+                        "word": "BRAZO"
+                    },
+                    {
+                        "end": 84.58,
+                        "line_number": 1,
+                        "probability": 0.96594083,
+                        "start": 84.35,
+                        "word": "CUANDO"
+                    },
+                    {
+                        "end": 84.77,
+                        "line_number": 1,
+                        "probability": 0.98725873,
+                        "start": 84.58,
+                        "word": "TE"
+                    },
+                    {
+                        "end": 85.13,
+                        "line_number": 2,
+                        "probability": 0.99605656,
+                        "start": 84.77,
+                        "word": "R\u00cdES"
+                    },
+                    {
+                        "end": 85.36,
+                        "line_number": 2,
+                        "probability": 0.9909621,
+                        "start": 85.13,
+                        "word": "DE"
+                    },
+                    {
+                        "end": 85.68,
+                        "line_number": 2,
+                        "probability": 0.9986924,
+                        "start": 85.36,
+                        "word": "ALGO"
+                    }
+                ]
+            },
+            {
+                "end": 87.34,
+                "id": "20",
+                "start": 85.73,
+                "text": "Y MI PIEL\nREGISTRA UN\nPULSO",
+                "words": [
+                    {
+                        "end": 85.92,
+                        "line_number": 0,
+                        "probability": 0.99252266,
+                        "start": 85.73,
+                        "word": "Y"
+                    },
+                    {
+                        "end": 86.14,
+                        "line_number": 0,
+                        "probability": 0.99262494,
+                        "start": 85.92,
+                        "word": "MI"
+                    },
+                    {
+                        "end": 86.42,
+                        "line_number": 0,
+                        "probability": 0.9988753,
+                        "start": 86.14,
+                        "word": "PIEL"
+                    },
+                    {
+                        "end": 86.82,
+                        "line_number": 1,
+                        "probability": 0.9002824,
+                        "start": 86.42,
+                        "word": "REGISTRA"
+                    },
+                    {
+                        "end": 86.91,
+                        "line_number": 1,
+                        "probability": 0.9954822,
+                        "start": 86.82,
+                        "word": "UN"
+                    },
+                    {
+                        "end": 87.34,
+                        "line_number": 2,
+                        "probability": 0.99609303,
+                        "start": 86.91,
+                        "word": "PULSO"
+                    }
+                ]
+            },
+            {
+                "end": 88.22,
+                "id": "21",
+                "start": 87.34,
+                "text": "ELECTROMAGN\u00c9TICO",
+                "words": [
+                    {
+                        "end": 88.22,
+                        "line_number": 3,
+                        "probability": 0.9932423,
+                        "start": 87.34,
+                        "word": "ELECTROMAGN\u00c9TICO"
+                    }
+                ]
+            },
+            {
+                "end": 90.75,
+                "id": "22",
+                "start": 88.27,
+                "text": "ME PREGUNTAS\nTODO BIEN TE\nNOTO ALGO P\u00c1LIDO",
+                "words": [
+                    {
+                        "end": 88.62,
+                        "line_number": 0,
+                        "probability": 0.9962097,
+                        "start": 88.27,
+                        "word": "ME"
+                    },
+                    {
+                        "end": 89,
+                        "line_number": 0,
+                        "probability": 0.99255866,
+                        "start": 88.62,
+                        "word": "PREGUNTAS"
+                    },
+                    {
+                        "end": 89.32,
+                        "line_number": 1,
+                        "probability": 0.4047276,
+                        "start": 89,
+                        "word": "TODO"
+                    },
+                    {
+                        "end": 89.58,
+                        "line_number": 1,
+                        "probability": 0.9837693,
+                        "start": 89.32,
+                        "word": "BIEN"
+                    },
+                    {
+                        "end": 89.729,
+                        "line_number": 1,
+                        "probability": 0.99857813,
+                        "start": 89.58,
+                        "word": "TE"
+                    },
+                    {
+                        "end": 90.06,
+                        "line_number": 2,
+                        "probability": 0.99968153,
+                        "start": 89.729,
+                        "word": "NOTO"
+                    },
+                    {
+                        "end": 90.27,
+                        "line_number": 2,
+                        "probability": 0.99956715,
+                        "start": 90.06,
+                        "word": "ALGO"
+                    },
+                    {
+                        "end": 90.75,
+                        "line_number": 2,
+                        "probability": 0.99964285,
+                        "start": 90.27,
+                        "word": "P\u00c1LIDO"
+                    }
+                ]
+            },
+            {
+                "end": 92.75,
+                "id": "23",
+                "start": 90.81,
+                "text": "Y YO TE DIGO\nNADA CON EL\nPULSO EN MODO",
+                "words": [
+                    {
+                        "end": 90.9,
+                        "line_number": 0,
+                        "probability": 0.996223,
+                        "start": 90.81,
+                        "word": "Y"
+                    },
+                    {
+                        "end": 91.05,
+                        "line_number": 0,
+                        "probability": 0.99890196,
+                        "start": 90.9,
+                        "word": "YO"
+                    },
+                    {
+                        "end": 91.25,
+                        "line_number": 0,
+                        "probability": 0.99674374,
+                        "start": 91.05,
+                        "word": "TE"
+                    },
+                    {
+                        "end": 91.53,
+                        "line_number": 0,
+                        "probability": 0.99956524,
+                        "start": 91.25,
+                        "word": "DIGO"
+                    },
+                    {
+                        "end": 91.81,
+                        "line_number": 1,
+                        "probability": 0.9966278,
+                        "start": 91.53,
+                        "word": "NADA"
+                    },
+                    {
+                        "end": 92.06,
+                        "line_number": 1,
+                        "probability": 0.6610769,
+                        "start": 91.81,
+                        "word": "CON"
+                    },
+                    {
+                        "end": 92.229,
+                        "line_number": 1,
+                        "probability": 0.9992907,
+                        "start": 92.06,
+                        "word": "EL"
+                    },
+                    {
+                        "end": 92.44,
+                        "line_number": 2,
+                        "probability": 0.9993395,
+                        "start": 92.229,
+                        "word": "PULSO"
+                    },
+                    {
+                        "end": 92.55,
+                        "line_number": 2,
+                        "probability": 0.9967076,
+                        "start": 92.44,
+                        "word": "EN"
+                    },
+                    {
+                        "end": 92.75,
+                        "line_number": 2,
+                        "probability": 0.99960715,
+                        "start": 92.55,
+                        "word": "MODO"
+                    }
+                ]
+            },
+            {
+                "end": 93.26,
+                "id": "24",
+                "start": 92.75,
+                "text": "CR\u00cdTICO",
+                "words": [
+                    {
+                        "end": 93.26,
+                        "line_number": 3,
+                        "probability": 0.9982426,
+                        "start": 92.75,
+                        "word": "CR\u00cdTICO"
+                    }
+                ]
+            },
+            {
+                "end": 95.4,
+                "id": "25",
+                "start": 93.31,
+                "text": "RECUERDAS MI\nCAF\u00c9\nCOMO A M\u00cd ME",
+                "words": [
+                    {
+                        "end": 93.75,
+                        "line_number": 0,
+                        "probability": 0.9235569,
+                        "start": 93.31,
+                        "word": "RECUERDAS"
+                    },
+                    {
+                        "end": 93.96,
+                        "line_number": 0,
+                        "probability": 0.99939173,
+                        "start": 93.75,
+                        "word": "MI"
+                    },
+                    {
+                        "end": 94.57,
+                        "line_number": 1,
+                        "probability": 0.997318,
+                        "start": 93.96,
+                        "word": "CAF\u00c9"
+                    },
+                    {
+                        "end": 94.93,
+                        "line_number": 2,
+                        "probability": 0.51825714,
+                        "start": 94.57,
+                        "word": "COMO"
+                    },
+                    {
+                        "end": 95.039,
+                        "line_number": 2,
+                        "probability": 0.99973875,
+                        "start": 94.93,
+                        "word": "A"
+                    },
+                    {
+                        "end": 95.14,
+                        "line_number": 2,
+                        "probability": 0.9792153,
+                        "start": 95.039,
+                        "word": "M\u00cd"
+                    },
+                    {
+                        "end": 95.4,
+                        "line_number": 2,
+                        "probability": 0.99983406,
+                        "start": 95.14,
+                        "word": "ME"
+                    }
+                ]
+            },
+            {
+                "end": 95.72,
+                "id": "26",
+                "start": 95.4,
+                "text": "GUSTA",
+                "words": [
+                    {
+                        "end": 95.72,
+                        "line_number": 3,
+                        "probability": 0.99767005,
+                        "start": 95.4,
+                        "word": "GUSTA"
+                    }
+                ]
+            },
+            {
+                "end": 97.76,
+                "id": "27",
+                "start": 95.77,
+                "text": "Y MI MENTE LO\nARCHIVA COMO\nALARMA QUE ME",
+                "words": [
+                    {
+                        "end": 95.81,
+                        "line_number": 0,
+                        "probability": 0.97476166,
+                        "start": 95.77,
+                        "word": "Y"
+                    },
+                    {
+                        "end": 95.99,
+                        "line_number": 0,
+                        "probability": 0.99734086,
+                        "start": 95.81,
+                        "word": "MI"
+                    },
+                    {
+                        "end": 96.21,
+                        "line_number": 0,
+                        "probability": 0.997261,
+                        "start": 95.99,
+                        "word": "MENTE"
+                    },
+                    {
+                        "end": 96.42,
+                        "line_number": 0,
+                        "probability": 0.993989,
+                        "start": 96.21,
+                        "word": "LO"
+                    },
+                    {
+                        "end": 96.91,
+                        "line_number": 1,
+                        "probability": 0.99927646,
+                        "start": 96.42,
+                        "word": "ARCHIVA"
+                    },
+                    {
+                        "end": 97.13,
+                        "line_number": 1,
+                        "probability": 0.9840158,
+                        "start": 96.91,
+                        "word": "COMO"
+                    },
+                    {
+                        "end": 97.5,
+                        "line_number": 2,
+                        "probability": 0.99833477,
+                        "start": 97.13,
+                        "word": "ALARMA"
+                    },
+                    {
+                        "end": 97.62,
+                        "line_number": 2,
+                        "probability": 0.9882648,
+                        "start": 97.5,
+                        "word": "QUE"
+                    },
+                    {
+                        "end": 97.76,
+                        "line_number": 2,
+                        "probability": 0.99993134,
+                        "start": 97.62,
+                        "word": "ME"
+                    }
+                ]
+            },
+            {
+                "end": 98.23,
+                "id": "28",
+                "start": 97.76,
+                "text": "ASUSTA Y",
+                "words": [
+                    {
+                        "end": 97.995,
+                        "line_number": 0,
+                        "probability": 1,
+                        "start": 97.76,
+                        "word": "ASUSTA"
+                    },
+                    {
+                        "end": 98.23,
+                        "line_number": 0,
+                        "probability": 1,
+                        "start": 97.995,
+                        "word": "Y"
+                    }
+                ]
+            },
+            {
+                "end": 99.23,
+                "id": "29",
+                "start": 98.29,
+                "text": "ME GUSTA",
+                "words": [
+                    {
+                        "end": 98.68,
+                        "line_number": 0,
+                        "probability": 0.9891247,
+                        "start": 98.29,
+                        "word": "ME"
+                    },
+                    {
+                        "end": 99.23,
+                        "line_number": 0,
+                        "probability": 0.9977785,
+                        "start": 98.68,
+                        "word": "GUSTA"
+                    }
+                ]
+            },
+            {
+                "end": 106.36,
+                "id": "30",
+                "section": "bridge",
+                "start": 99.29,
+                "text": "MI LADO ADICTO\nGRITA NO PUEDE\nSER CASUAL",
+                "words": [
+                    {
+                        "end": 102.42,
+                        "line_number": 0,
+                        "probability": 0.8980114,
+                        "start": 102.28999999999999,
+                        "word": "MI"
+                    },
+                    {
+                        "end": 102.789,
+                        "line_number": 0,
+                        "probability": 0.99985313,
+                        "start": 102.42,
+                        "word": "LADO"
+                    },
+                    {
+                        "end": 103.45,
+                        "line_number": 0,
+                        "probability": 0.9999873,
+                        "start": 102.789,
+                        "word": "ADICTO"
+                    },
+                    {
+                        "end": 104.39,
+                        "line_number": 1,
+                        "probability": 0.9930499,
+                        "start": 103.45,
+                        "word": "GRITA"
+                    },
+                    {
+                        "end": 104.74,
+                        "line_number": 1,
+                        "probability": 0.99925834,
+                        "start": 104.39,
+                        "word": "NO"
+                    },
+                    {
+                        "end": 105.19,
+                        "line_number": 1,
+                        "probability": 0.9810474,
+                        "start": 104.74,
+                        "word": "PUEDE"
+                    },
+                    {
+                        "end": 105.78,
+                        "line_number": 2,
+                        "probability": 0.99982834,
+                        "start": 105.19,
+                        "word": "SER"
+                    },
+                    {
+                        "end": 106.36,
+                        "line_number": 2,
+                        "probability": 0.9981154,
+                        "start": 105.78,
+                        "word": "CASUAL"
+                    }
+                ]
+            },
+            {
+                "end": 111.6,
+                "id": "31",
+                "start": 106.41,
+                "text": "MI LADO HERIDO\nSUSURRA ES UN\nRITUAL INFERNAL",
+                "words": [
+                    {
+                        "end": 107.53,
+                        "line_number": 0,
+                        "probability": 0.991378,
+                        "start": 106.41,
+                        "word": "MI"
+                    },
+                    {
+                        "end": 107.72,
+                        "line_number": 0,
+                        "probability": 0.9996396,
+                        "start": 107.53,
+                        "word": "LADO"
+                    },
+                    {
+                        "end": 108.2,
+                        "line_number": 0,
+                        "probability": 0.99918807,
+                        "start": 107.72,
+                        "word": "HERIDO"
+                    },
+                    {
+                        "end": 109.33,
+                        "line_number": 1,
+                        "probability": 0.9980965,
+                        "start": 108.2,
+                        "word": "SUSURRA"
+                    },
+                    {
+                        "end": 109.51,
+                        "line_number": 1,
+                        "probability": 0.9998722,
+                        "start": 109.33,
+                        "word": "ES"
+                    },
+                    {
+                        "end": 109.88,
+                        "line_number": 1,
+                        "probability": 0.9999199,
+                        "start": 109.51,
+                        "word": "UN"
+                    },
+                    {
+                        "end": 110.4,
+                        "line_number": 2,
+                        "probability": 0.99956524,
+                        "start": 109.88,
+                        "word": "RITUAL"
+                    },
+                    {
+                        "end": 111.6,
+                        "line_number": 2,
+                        "probability": 0.996791,
+                        "start": 110.4,
+                        "word": "INFERNAL"
+                    }
+                ]
+            },
+            {
+                "end": 112.79,
+                "id": "32",
+                "start": 111.65,
+                "text": "",
+                "words": []
+            },
+            {
+                "end": 116.86,
+                "id": "33",
+                "start": 112.85,
+                "text": "BUSCANDO PISTAS\nEN TU LENGUAJE\nCORPORAL",
+                "words": [
+                    {
+                        "end": 113.45,
+                        "line_number": 0,
+                        "probability": 0.7611755,
+                        "start": 112.85,
+                        "word": "BUSCANDO"
+                    },
+                    {
+                        "end": 114.09,
+                        "line_number": 0,
+                        "probability": 0.99596643,
+                        "start": 113.45,
+                        "word": "PISTAS"
+                    },
+                    {
+                        "end": 114.3,
+                        "line_number": 1,
+                        "probability": 0.98868716,
+                        "start": 114.09,
+                        "word": "EN"
+                    },
+                    {
+                        "end": 114.5,
+                        "line_number": 1,
+                        "probability": 0.9890285,
+                        "start": 114.3,
+                        "word": "TU"
+                    },
+                    {
+                        "end": 115.35,
+                        "line_number": 1,
+                        "probability": 0.9972069,
+                        "start": 114.5,
+                        "word": "LENGUAJE"
+                    },
+                    {
+                        "end": 116.86,
+                        "line_number": 2,
+                        "probability": 0.9960104,
+                        "start": 115.35,
+                        "word": "CORPORAL"
+                    }
+                ]
+            },
+            {
+                "end": 124.36,
+                "id": "34",
+                "start": 117.05,
+                "text": "UN FALLO EN TU\nSISTEMA QUE ME\nDIGA QUE ES REAL",
+                "words": [
+                    {
+                        "end": 117.26,
+                        "line_number": 0,
+                        "probability": 0.950482,
+                        "start": 117.05,
+                        "word": "UN"
+                    },
+                    {
+                        "end": 117.8,
+                        "line_number": 0,
+                        "probability": 0.9969004,
+                        "start": 117.26,
+                        "word": "FALLO"
+                    },
+                    {
+                        "end": 117.94,
+                        "line_number": 0,
+                        "probability": 0.9952809,
+                        "start": 117.8,
+                        "word": "EN"
+                    },
+                    {
+                        "end": 118.33,
+                        "line_number": 0,
+                        "probability": 0.99309456,
+                        "start": 117.94,
+                        "word": "TU"
+                    },
+                    {
+                        "end": 118.95,
+                        "line_number": 1,
+                        "probability": 0.9947799,
+                        "start": 118.33,
+                        "word": "SISTEMA"
+                    },
+                    {
+                        "end": 119.41,
+                        "line_number": 1,
+                        "probability": 0.74090993,
+                        "start": 118.95,
+                        "word": "QUE"
+                    },
+                    {
+                        "end": 119.77,
+                        "line_number": 1,
+                        "probability": 0.99623436,
+                        "start": 119.41,
+                        "word": "ME"
+                    },
+                    {
+                        "end": 120.38,
+                        "line_number": 2,
+                        "probability": 0.99447036,
+                        "start": 119.77,
+                        "word": "DIGA"
+                    },
+                    {
+                        "end": 120.54,
+                        "line_number": 2,
+                        "probability": 0.94391495,
+                        "start": 120.38,
+                        "word": "QUE"
+                    },
+                    {
+                        "end": 120.95,
+                        "line_number": 2,
+                        "probability": 0.8720849,
+                        "start": 120.54,
+                        "word": "ES"
+                    },
+                    {
+                        "end": 124.36,
+                        "line_number": 2,
+                        "probability": 0.94716024,
+                        "start": 120.95,
+                        "word": "REAL"
+                    }
+                ]
+            },
+            {
+                "end": 128.949,
+                "id": "35",
+                "section": "chorus",
+                "start": 124.41,
+                "text": "Y BAILO CON TU\nSOMBRA EN MI\nHABITACI\u00d3N",
+                "words": [
+                    {
+                        "end": 124.16,
+                        "line_number": 0,
+                        "probability": 0.9253755,
+                        "start": 124.41,
+                        "word": "Y"
+                    },
+                    {
+                        "end": 124.54,
+                        "line_number": 0,
+                        "probability": 0.9978461,
+                        "start": 124.16,
+                        "word": "BAILO"
+                    },
+                    {
+                        "end": 124.68,
+                        "line_number": 0,
+                        "probability": 0.99874574,
+                        "start": 124.54,
+                        "word": "CON"
+                    },
+                    {
+                        "end": 124.88,
+                        "line_number": 0,
+                        "probability": 0.9966221,
+                        "start": 124.68,
+                        "word": "TU"
+                    },
+                    {
+                        "end": 125.24,
+                        "line_number": 1,
+                        "probability": 0.999204,
+                        "start": 124.88,
+                        "word": "SOMBRA"
+                    },
+                    {
+                        "end": 125.34,
+                        "line_number": 1,
+                        "probability": 0.9974778,
+                        "start": 125.24,
+                        "word": "EN"
+                    },
+                    {
+                        "end": 125.54,
+                        "line_number": 1,
+                        "probability": 0.99878764,
+                        "start": 125.34,
+                        "word": "MI"
+                    },
+                    {
+                        "end": 128.949,
+                        "line_number": 2,
+                        "probability": 0.9982781,
+                        "start": 125.54,
+                        "word": "HABITACI\u00d3N"
+                    }
+                ]
+            },
+            {
+                "end": 133.12,
+                "id": "36",
+                "start": 129.19,
+                "text": "CREANDO\nESPEJISMOS DE UN\nTU Y YO",
+                "words": [
+                    {
+                        "end": 129.75142857142856,
+                        "line_number": 0,
+                        "probability": 1,
+                        "start": 129.19,
+                        "word": "CREANDO"
+                    },
+                    {
+                        "end": 130.31285714285713,
+                        "line_number": 1,
+                        "probability": 1,
+                        "start": 129.75142857142856,
+                        "word": "ESPEJISMOS"
+                    },
+                    {
+                        "end": 130.87428571428572,
+                        "line_number": 1,
+                        "probability": 1,
+                        "start": 130.31285714285715,
+                        "word": "DE"
+                    },
+                    {
+                        "end": 131.43571428571428,
+                        "line_number": 1,
+                        "probability": 1,
+                        "start": 130.87428571428572,
+                        "word": "UN"
+                    },
+                    {
+                        "end": 131.99714285714285,
+                        "line_number": 2,
+                        "probability": 1,
+                        "start": 131.43571428571428,
+                        "word": "TU"
+                    },
+                    {
+                        "end": 132.06774847870184,
+                        "line_number": 2,
+                        "probability": 1,
+                        "start": 131.99714285714285,
+                        "word": "Y"
+                    },
+                    {
+                        "end": 133.12,
+                        "line_number": 2,
+                        "probability": 1,
+                        "start": 131.76482758620688,
+                        "word": "YO"
+                    }
+                ]
+            },
+            {
+                "end": 136.62,
+                "id": "37",
+                "start": 134.17,
+                "text": "CADA JAJA ES UNA\nALUCINACI\u00d3N",
+                "words": [
+                    {
+                        "end": 134.22,
+                        "line_number": 0,
+                        "probability": 0.9702394,
+                        "start": 134.17,
+                        "word": "CADA"
+                    },
+                    {
+                        "end": 134.62,
+                        "line_number": 0,
+                        "probability": 0.99734163,
+                        "start": 134.22,
+                        "word": "JAJA"
+                    },
+                    {
+                        "end": 135.01,
+                        "line_number": 0,
+                        "probability": 0.9991764,
+                        "start": 134.62,
+                        "word": "ES"
+                    },
+                    {
+                        "end": 135.28,
+                        "line_number": 0,
+                        "probability": 0.9996491,
+                        "start": 135.01,
+                        "word": "UNA"
+                    },
+                    {
+                        "end": 136.62,
+                        "line_number": 1,
+                        "probability": 0.9973364,
+                        "start": 135.28,
+                        "word": "ALUCINACI\u00d3N"
+                    }
+                ]
+            },
+            {
+                "end": 138.34,
+                "id": "38",
+                "start": 136.67,
+                "text": "ME DAS UNA\nMIGAJA Y\nCONSTRUYO UNA",
+                "words": [
+                    {
+                        "end": 136.73,
+                        "line_number": 0,
+                        "probability": 0.9992488,
+                        "start": 136.67,
+                        "word": "ME"
+                    },
+                    {
+                        "end": 136.95,
+                        "line_number": 0,
+                        "probability": 0.9995328,
+                        "start": 136.73,
+                        "word": "DAS"
+                    },
+                    {
+                        "end": 137.21,
+                        "line_number": 0,
+                        "probability": 0.99792695,
+                        "start": 136.95,
+                        "word": "UNA"
+                    },
+                    {
+                        "end": 137.6,
+                        "line_number": 1,
+                        "probability": 0.999672,
+                        "start": 137.21,
+                        "word": "MIGAJA"
+                    },
+                    {
+                        "end": 137.74,
+                        "line_number": 1,
+                        "probability": 0.98690295,
+                        "start": 137.6,
+                        "word": "Y"
+                    },
+                    {
+                        "end": 138.11,
+                        "line_number": 2,
+                        "probability": 0.99886775,
+                        "start": 137.74,
+                        "word": "CONSTRUYO"
+                    },
+                    {
+                        "end": 138.34,
+                        "line_number": 2,
+                        "probability": 0.99958044,
+                        "start": 138.11,
+                        "word": "UNA"
+                    }
+                ]
+            },
+            {
+                "end": 139.16,
+                "id": "39",
+                "start": 138.34,
+                "text": "MANSI\u00d3N",
+                "words": [
+                    {
+                        "end": 139.16,
+                        "line_number": 3,
+                        "probability": 0.99887145,
+                        "start": 138.34,
+                        "word": "MANSI\u00d3N"
+                    }
+                ]
+            },
+            {
+                "end": 142.4,
+                "id": "40",
+                "start": 139.21,
+                "text": "ME AFERRO A ESTE\nVENENO A LA\nDULCE ADICCI\u00d3N",
+                "words": [
+                    {
+                        "end": 139.2,
+                        "line_number": 0,
+                        "probability": 0.99842006,
+                        "start": 139.21,
+                        "word": "ME"
+                    },
+                    {
+                        "end": 139.53,
+                        "line_number": 0,
+                        "probability": 0.99925345,
+                        "start": 139.2,
+                        "word": "AFERRO"
+                    },
+                    {
+                        "end": 139.61,
+                        "line_number": 0,
+                        "probability": 0.9861446,
+                        "start": 139.53,
+                        "word": "A"
+                    },
+                    {
+                        "end": 139.75,
+                        "line_number": 0,
+                        "probability": 0.99862957,
+                        "start": 139.61,
+                        "word": "ESTE"
+                    },
+                    {
+                        "end": 140.209,
+                        "line_number": 1,
+                        "probability": 0.9838634,
+                        "start": 139.75,
+                        "word": "VENENO"
+                    },
+                    {
+                        "end": 140.269,
+                        "line_number": 1,
+                        "probability": 0.98727006,
+                        "start": 140.209,
+                        "word": "A"
+                    },
+                    {
+                        "end": 140.38,
+                        "line_number": 1,
+                        "probability": 0.99961287,
+                        "start": 140.269,
+                        "word": "LA"
+                    },
+                    {
+                        "end": 140.7,
+                        "line_number": 2,
+                        "probability": 0.99986744,
+                        "start": 140.38,
+                        "word": "DULCE"
+                    },
+                    {
+                        "end": 142.4,
+                        "line_number": 2,
+                        "probability": 0.99871486,
+                        "start": 140.7,
+                        "word": "ADICCI\u00d3N"
+                    }
+                ]
+            },
+            {
+                "end": 146.45,
+                "id": "41",
+                "start": 142.45,
+                "text": "DE QUE EN TU CAOS\nYO SOY LA \u00daNICA\nOPCI\u00d3N",
+                "words": [
+                    {
+                        "end": 142.85,
+                        "line_number": 0,
+                        "probability": 1,
+                        "start": 142.45,
+                        "word": "DE"
+                    },
+                    {
+                        "end": 143.25,
+                        "line_number": 0,
+                        "probability": 1,
+                        "start": 142.85,
+                        "word": "QUE"
+                    },
+                    {
+                        "end": 143.65,
+                        "line_number": 0,
+                        "probability": 1,
+                        "start": 143.25,
+                        "word": "EN"
+                    },
+                    {
+                        "end": 144.04999999999998,
+                        "line_number": 0,
+                        "probability": 1,
+                        "start": 143.64999999999998,
+                        "word": "TU"
+                    },
+                    {
+                        "end": 144.45,
+                        "line_number": 0,
+                        "probability": 1,
+                        "start": 144.04999999999998,
+                        "word": "CAOS"
+                    },
+                    {
+                        "end": 144.85,
+                        "line_number": 1,
+                        "probability": 1,
+                        "start": 144.45,
+                        "word": "YO"
+                    },
+                    {
+                        "end": 145.25,
+                        "line_number": 1,
+                        "probability": 1,
+                        "start": 144.85,
+                        "word": "SOY"
+                    },
+                    {
+                        "end": 145.65,
+                        "line_number": 1,
+                        "probability": 1,
+                        "start": 145.25,
+                        "word": "LA"
+                    },
+                    {
+                        "end": 146.04999999999998,
+                        "line_number": 1,
+                        "probability": 1,
+                        "start": 145.64999999999998,
+                        "word": "\u00daNICA"
+                    },
+                    {
+                        "end": 146.45,
+                        "line_number": 2,
+                        "probability": 1,
+                        "start": 146.04999999999998,
+                        "word": "OPCI\u00d3N"
+                    }
+                ]
+            },
+            {
+                "end": 150.2,
+                "id": "42",
+                "section": "verse",
+                "start": 149.59,
+                "text": "QUE PAT\u00c9TICO O NO",
+                "words": [
+                    {
+                        "end": 149.7425,
+                        "line_number": 0,
+                        "probability": 1,
+                        "start": 149.59,
+                        "word": "QUE"
+                    },
+                    {
+                        "end": 149.895,
+                        "line_number": 0,
+                        "probability": 1,
+                        "start": 149.7425,
+                        "word": "PAT\u00c9TICO"
+                    },
+                    {
+                        "end": 150.04749999999999,
+                        "line_number": 0,
+                        "probability": 1,
+                        "start": 149.89499999999998,
+                        "word": "O"
+                    },
+                    {
+                        "end": 150.2,
+                        "line_number": 0,
+                        "probability": 1,
+                        "start": 150.04749999999999,
+                        "word": "NO"
+                    }
+                ]
+            },
+            {
+                "end": 153.33,
+                "id": "43",
+                "start": 150.25,
+                "text": "BUSCANDO UN\nTESORO EN MITAD\nDEL ECO",
+                "words": [
+                    {
+                        "end": 150.69,
+                        "line_number": 0,
+                        "probability": 1,
+                        "start": 150.25,
+                        "word": "BUSCANDO"
+                    },
+                    {
+                        "end": 151.13,
+                        "line_number": 0,
+                        "probability": 1,
+                        "start": 150.69,
+                        "word": "UN"
+                    },
+                    {
+                        "end": 151.57,
+                        "line_number": 1,
+                        "probability": 1,
+                        "start": 151.13,
+                        "word": "TESORO"
+                    },
+                    {
+                        "end": 152.01,
+                        "line_number": 1,
+                        "probability": 1,
+                        "start": 151.57,
+                        "word": "EN"
+                    },
+                    {
+                        "end": 152.45000000000002,
+                        "line_number": 1,
+                        "probability": 1,
+                        "start": 152.01000000000002,
+                        "word": "MITAD"
+                    },
+                    {
+                        "end": 152.89000000000001,
+                        "line_number": 2,
+                        "probability": 1,
+                        "start": 152.45000000000002,
+                        "word": "DEL"
+                    },
+                    {
+                        "end": 153.33,
+                        "line_number": 2,
+                        "probability": 1,
+                        "start": 152.89000000000001,
+                        "word": "ECO"
+                    }
+                ]
+            },
+            {
+                "end": 156.18,
+                "id": "44",
+                "start": 153.43,
+                "text": "FABRICANDO\nSE\u00d1ALES CON PURO\nSILENCIO",
+                "words": [
+                    {
+                        "end": 154.26,
+                        "line_number": 0,
+                        "probability": 0.9991719,
+                        "start": 153.43,
+                        "word": "FABRICANDO"
+                    },
+                    {
+                        "end": 154.9,
+                        "line_number": 1,
+                        "probability": 0.99991703,
+                        "start": 154.26,
+                        "word": "SE\u00d1ALES"
+                    },
+                    {
+                        "end": 155.12,
+                        "line_number": 1,
+                        "probability": 0.9995976,
+                        "start": 154.9,
+                        "word": "CON"
+                    },
+                    {
+                        "end": 155.54,
+                        "line_number": 1,
+                        "probability": 0.9997988,
+                        "start": 155.12,
+                        "word": "PURO"
+                    },
+                    {
+                        "end": 156.18,
+                        "line_number": 2,
+                        "probability": 0.9999733,
+                        "start": 155.54,
+                        "word": "SILENCIO"
+                    }
+                ]
+            },
+            {
+                "end": 158.33,
+                "id": "45",
+                "start": 156.23,
+                "text": "TAL VEZ SOLO\nERES BUENO Y YO\nESTOY TAN",
+                "words": [
+                    {
+                        "end": 156.45,
+                        "line_number": 0,
+                        "probability": 0.99448967,
+                        "start": 156.23,
+                        "word": "TAL"
+                    },
+                    {
+                        "end": 156.68,
+                        "line_number": 0,
+                        "probability": 0.99970824,
+                        "start": 156.45,
+                        "word": "VEZ"
+                    },
+                    {
+                        "end": 156.97,
+                        "line_number": 0,
+                        "probability": 0.9460878,
+                        "start": 156.68,
+                        "word": "SOLO"
+                    },
+                    {
+                        "end": 157.26,
+                        "line_number": 1,
+                        "probability": 0.99980736,
+                        "start": 156.97,
+                        "word": "ERES"
+                    },
+                    {
+                        "end": 157.51,
+                        "line_number": 1,
+                        "probability": 0.9998474,
+                        "start": 157.26,
+                        "word": "BUENO"
+                    },
+                    {
+                        "end": 157.68,
+                        "line_number": 1,
+                        "probability": 0.98229814,
+                        "start": 157.51,
+                        "word": "Y"
+                    },
+                    {
+                        "end": 157.85,
+                        "line_number": 1,
+                        "probability": 0.99993515,
+                        "start": 157.68,
+                        "word": "YO"
+                    },
+                    {
+                        "end": 158.08,
+                        "line_number": 2,
+                        "probability": 0.9993574,
+                        "start": 157.85,
+                        "word": "ESTOY"
+                    },
+                    {
+                        "end": 158.33,
+                        "line_number": 2,
+                        "probability": 0.9998741,
+                        "start": 158.08,
+                        "word": "TAN"
+                    }
+                ]
+            },
+            {
+                "end": 158.88,
+                "id": "46",
+                "start": 158.33,
+                "text": "DESHECHO",
+                "words": [
+                    {
+                        "end": 158.88,
+                        "line_number": 3,
+                        "probability": 0.9442544,
+                        "start": 158.33,
+                        "word": "DESHECHO"
+                    }
+                ]
+            },
+            {
+                "end": 162.54,
+                "id": "47",
+                "start": 158.93,
+                "text": "QUE CONFUNDO TU\nCALOR CON ALGO\nQUE NUNCA HAS",
+                "words": [
+                    {
+                        "end": 159.23,
+                        "line_number": 0,
+                        "probability": 0.9987991,
+                        "start": 158.93,
+                        "word": "QUE"
+                    },
+                    {
+                        "end": 159.769,
+                        "line_number": 0,
+                        "probability": 0.99922895,
+                        "start": 159.23,
+                        "word": "CONFUNDO"
+                    },
+                    {
+                        "end": 160,
+                        "line_number": 0,
+                        "probability": 0.99988365,
+                        "start": 159.769,
+                        "word": "TU"
+                    },
+                    {
+                        "end": 160.35,
+                        "line_number": 1,
+                        "probability": 0.9997597,
+                        "start": 160,
+                        "word": "CALOR"
+                    },
+                    {
+                        "end": 160.7,
+                        "line_number": 1,
+                        "probability": 0.99957097,
+                        "start": 160.35,
+                        "word": "CON"
+                    },
+                    {
+                        "end": 161,
+                        "line_number": 1,
+                        "probability": 0.99995613,
+                        "start": 160.7,
+                        "word": "ALGO"
+                    },
+                    {
+                        "end": 161.49,
+                        "line_number": 2,
+                        "probability": 0.9994794,
+                        "start": 161,
+                        "word": "QUE"
+                    },
+                    {
+                        "end": 162.06,
+                        "line_number": 2,
+                        "probability": 0.99985504,
+                        "start": 161.49,
+                        "word": "NUNCA"
+                    },
+                    {
+                        "end": 162.54,
+                        "line_number": 2,
+                        "probability": 0.96748966,
+                        "start": 162.06,
+                        "word": "HAS"
+                    }
+                ]
+            },
+            {
+                "end": 163.23,
+                "id": "48",
+                "start": 162.54,
+                "text": "HECHO",
+                "words": [
+                    {
+                        "end": 163.23,
+                        "line_number": 3,
+                        "probability": 0.9994947,
+                        "start": 162.54,
+                        "word": "HECHO"
+                    }
+                ]
+            },
+            {
+                "end": 171.39,
+                "id": "49",
+                "start": 169.29,
+                "text": "CON ALGO QUE\nNUNCA HAS HECHO",
+                "words": [
+                    {
+                        "end": 170.34,
+                        "line_number": 0,
+                        "probability": 0.9654232,
+                        "start": 169.29,
+                        "word": "CON"
+                    },
+                    {
+                        "end": 170.84555555555553,
+                        "line_number": 0,
+                        "probability": 0.9993631,
+                        "start": 170.34,
+                        "word": "ALGO"
+                    },
+                    {
+                        "end": 170.97777777777776,
+                        "line_number": 0,
+                        "probability": 0.9994127,
+                        "start": 170.84555555555553,
+                        "word": "QUE"
+                    },
+                    {
+                        "end": 171.10999999999999,
+                        "line_number": 1,
+                        "probability": 0.999001,
+                        "start": 170.97777777777776,
+                        "word": "NUNCA"
+                    },
+                    {
+                        "end": 171.23444444444442,
+                        "line_number": 1,
+                        "probability": 0.99913824,
+                        "start": 171.10999999999999,
+                        "word": "HAS"
+                    },
+                    {
+                        "end": 171.39,
+                        "line_number": 1,
+                        "probability": 0.999918,
+                        "start": 171.23444444444442,
+                        "word": "HECHO"
+                    }
+                ]
+            },
+            {
+                "end": 175.37,
+                "id": "50",
+                "start": 174.3,
+                "text": "OTRO MENSAJE\nTUYO",
+                "words": [
+                    {
+                        "end": 175.08417808219178,
+                        "line_number": 0,
+                        "probability": 0.73108506,
+                        "start": 174.3,
+                        "word": "OTRO"
+                    },
+                    {
+                        "end": 175.21609589041097,
+                        "line_number": 0,
+                        "probability": 0.9992518,
+                        "start": 175.08417808219178,
+                        "word": "MENSAJE"
+                    },
+                    {
+                        "end": 175.37,
+                        "line_number": 1,
+                        "probability": 0.9960513,
+                        "start": 175.21609589041097,
+                        "word": "TUYO"
+                    }
+                ]
+            },
+            {
+                "end": 176.82,
+                "id": "51",
+                "start": 175.43,
+                "text": "NOS VEMOS LUEGO",
+                "words": [
+                    {
+                        "end": 176.21,
+                        "line_number": 0,
+                        "probability": 0.9959665,
+                        "start": 175.43,
+                        "word": "NOS"
+                    },
+                    {
+                        "end": 176.5,
+                        "line_number": 0,
+                        "probability": 0.999897,
+                        "start": 176.21,
+                        "word": "VEMOS"
+                    },
+                    {
+                        "end": 176.82,
+                        "line_number": 0,
+                        "probability": 0.9987591,
+                        "start": 176.5,
+                        "word": "LUEGO"
+                    }
+                ]
+            },
+            {
+                "end": 179.5,
+                "id": "52",
+                "start": 176.87,
+                "text": "Y AQU\u00cd VAMOS DE\nNUEVO",
+                "words": [
+                    {
+                        "end": 178.64,
+                        "line_number": 0,
+                        "probability": 0.9989953,
+                        "start": 176.87,
+                        "word": "Y"
+                    },
+                    {
+                        "end": 178.829,
+                        "line_number": 0,
+                        "probability": 0.9991745,
+                        "start": 178.64,
+                        "word": "AQU\u00cd"
+                    },
+                    {
+                        "end": 179.03,
+                        "line_number": 0,
+                        "probability": 0.99968725,
+                        "start": 178.829,
+                        "word": "VAMOS"
+                    },
+                    {
+                        "end": 179.28,
+                        "line_number": 0,
+                        "probability": 0.99974066,
+                        "start": 179.03,
+                        "word": "DE"
+                    },
+                    {
+                        "end": 179.5,
+                        "line_number": 1,
+                        "probability": 0.9999523,
+                        "start": 179.28,
+                        "word": "NUEVO"
+                    }
+                ]
+            }
+        ]
+    },
+    "config": {
+        "audio_path": "C:/Users/gosva/Downloads/Espejismos.wav",
+        "audio_name": "Espejismos.wav",
+        "font_path": "C:/Users/gosva/Downloads/xbd-downloader/other/unutterable (1)/Unutterable-Regular.ttf",
+        "bg_path": "C:/Users/gosva/Pictures/SuperImage/WhatsApp Image 2026-01-12 at 4.43.27 PM (1).png"
+    },
+    "eventBlocks": [],
+    "customEffects": []
+}

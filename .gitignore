@@ -1,0 +1,47 @@
+# =========================
+# Entornos Virtuales
+# =========================
+venv/
+env/
+.env
+
+# =========================
+# Archivos compilados de Python
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# =========================
+# Exportaciones y Renders
+# =========================
+# Ignora los videos finales exportados para no saturar el repositorio
+*_render.mp4
+*_render.webm
+
+# =========================
+# Archivos Multimedia Pesados
+# =========================
+# Si prefieres subir tus audios y fondos de prueba al repo, 
+# borra estas líneas. Si pesan mucho, déjalas.
+*.mp4
+*.webm
+*.mp3
+*.wav
+*.ogg
+*.mov
+
+# =========================
+# Bases de datos locales (Opcional)
+# =========================
+# Descomenta la siguiente línea si NO quieres subir tus proyectos guardados
+# db/
+
+# =========================
+# Archivos del Sistema y Editores
+# =========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
