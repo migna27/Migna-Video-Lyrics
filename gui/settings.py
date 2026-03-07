@@ -1,13 +1,19 @@
-from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QTabWidget, QFormLayout, 
-                             QCheckBox, QLabel, QPlainTextEdit, QPushButton, QFileDialog, QHBoxLayout)
-from PyQt6.QtCore import pyqtSignal
+# gui/settings.py
 import os
+from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QTabWidget, QFormLayout, 
+                             QCheckBox, QLabel, QPushButton, QFileDialog, QComboBox)
+from PyQt6.QtCore import pyqtSignal, Qt
 
 class SettingsPanel(QWidget):
-    # Señales para avisar a main.py
+    # Señales para medios
     font_selected = pyqtSignal(str)
     background_selected = pyqtSignal(str)
-    audio_selected = pyqtSignal(str, str) # Nueva señal: (Ruta del archivo, Nombre)
+    audio_selected = pyqtSignal(str, str)
+
+    # NUEVAS: Señales para las animaciones
+    anim_in_changed = pyqtSignal(str)
+    anim_out_changed = pyqtSignal(str)
+    anim_active_changed = pyqtSignal(str)
 
     def __init__(self):
         super().__init__()
@@ -22,13 +28,14 @@ class SettingsPanel(QWidget):
             QTabBar::tab { background: #222; color: gray; padding: 8px 15px; border-top-left-radius: 4px; border-top-right-radius: 4px; }
             QTabBar::tab:selected { background: #333; color: #00ffff; font-weight: bold; border-bottom: 2px solid #00ffff; }
             QTabWidget::pane { border: 1px solid #333; background: #1a1a1a; }
+            QComboBox { background: #333; color: white; padding: 5px; border: 1px solid #555; border-radius: 3px; }
+            QComboBox::drop-down { border-left: 1px solid #555; }
         """)
 
-        # Pestaña 1: Medios, Fondos y AUDIO
+        # --- PESTAÑA 1: MEDIA ---
         tab_media = QWidget()
         media_layout = QVBoxLayout(tab_media)
         
-        # --- NUEVO: Botón de Audio ---
         btn_audio = QPushButton("🎵 Cargar Pista de Audio (.mp3/.wav)")
         btn_audio.setStyleSheet("background-color: #0891b2; color: white; font-weight: bold; padding: 12px; border-radius: 4px;")
         btn_audio.clicked.connect(self.load_audio)
@@ -57,7 +64,32 @@ class SettingsPanel(QWidget):
         media_layout.addStretch()
         self.tabs.addTab(tab_media, "Media")
 
-        # Pestaña 2: Efectos Globales (VFX)
+        # --- PESTAÑA 2: ANIMACIONES (NUEVA) ---
+        tab_anims = QWidget()
+        anims_layout = QFormLayout(tab_anims)
+        anims_layout.setLabelAlignment(Qt.AlignmentFlag.AlignRight)
+
+        # Dropdown Entrada
+        self.combo_in = QComboBox()
+        self.combo_in.addItems(["glitch_reveal", "fade_in", "typewriter", "rise_from_void", "neon_flicker_on", "zoom_basico", "word_cascade", "cinematic_blur", "shatter_reverse", "side_sweep"])
+        self.combo_in.currentTextChanged.connect(self.anim_in_changed.emit)
+
+        # Dropdown Activa (Palabra por palabra)
+        self.combo_active = QComboBox()
+        self.combo_active.addItems(["scale_pop", "karaoke_sweep", "jitter_nervioso", "neon_pulse_glow", "invert_flash", "glitch_slice", "wave_bounce", "tilt_yawn", "color_overdrive", "ghost_trail"])
+        self.combo_active.currentTextChanged.connect(self.anim_active_changed.emit)
+
+        # Dropdown Salida
+        self.combo_out = QComboBox()
+        self.combo_out.addItems(["system_failure", "fade_out", "blackout_cut", "neon_flicker_off", "drop_fade", "evaporate", "typewriter_backspace", "zoom_out_collapse", "glitch_melt", "word_scatter"])
+        self.combo_out.currentTextChanged.connect(self.anim_out_changed.emit)
+
+        anims_layout.addRow(QLabel("<b>Entrada:</b>", styleSheet="color: #ccc;"), self.combo_in)
+        anims_layout.addRow(QLabel("<b>Palabra Activa:</b>", styleSheet="color: #0ff;"), self.combo_active)
+        anims_layout.addRow(QLabel("<b>Salida:</b>", styleSheet="color: #ccc;"), self.combo_out)
+        self.tabs.addTab(tab_anims, "Animaciones")
+
+        # --- PESTAÑA 3: GLOBAL VFX ---
         tab_vfx = QWidget()
         vfx_layout = QFormLayout(tab_vfx)
         self.chk_chromatic = QCheckBox("Aberración Cromática")
@@ -75,7 +107,7 @@ class SettingsPanel(QWidget):
         if filepath:
             filename = os.path.basename(filepath)
             self.lbl_audio_status.setText(f"Audio: {filename}")
-            self.lbl_audio_status.setText(f"Cargando análisis de audio... (espera)") # Aviso de carga
+            self.lbl_audio_status.setText(f"Cargando análisis de audio... (espera)")
             self.audio_selected.emit(filepath, filename)
 
     def load_font(self):

@@ -12,6 +12,7 @@ from core.gl_renderer import CanvasVideoRenderer
 from core.project_manager import ProjectManager
 from core.text_engine import TextEngine
 from core.video_exporter import VideoExporter
+from core.lyric_animator import LyricAnimator
 
 from gui.launcher import LauncherWidget
 from gui.timeline import TimelineEditor
@@ -43,6 +44,7 @@ class MignaDesktopApp(QMainWindow):
         self.mixer = AudioMixer(fps=30)
         self.gl_render = CanvasVideoRenderer()
         self.text_engine = TextEngine(width=1920, height=1080)
+        self.animator = LyricAnimator()
         
         self.current_time = 0.0
         self.is_playing = False
@@ -99,6 +101,9 @@ class MignaDesktopApp(QMainWindow):
         self.settings.font_selected.connect(self.set_custom_font)
         self.settings.background_selected.connect(self.set_background)
         self.timeline.lyrics_loaded.connect(self.set_lyrics)
+        self.settings.anim_in_changed.connect(self.set_anim_in)
+        self.settings.anim_out_changed.connect(self.set_anim_out)
+        self.settings.anim_active_changed.connect(self.set_anim_active)
 
         lp_layout.addWidget(self.settings, stretch=1)
         lp_layout.addWidget(self.timeline, stretch=2)
@@ -217,6 +222,21 @@ class MignaDesktopApp(QMainWindow):
         self.lyrics_segments = segments
         self._force_render_frame()
 
+    def set_anim_in(self, anim_name):
+        if hasattr(self, 'animator'):
+            self.animator.anim_in = anim_name
+            self._force_render_frame()
+
+    def set_anim_out(self, anim_name):
+        if hasattr(self, 'animator'):
+            self.animator.anim_out = anim_name
+            self._force_render_frame()
+
+    def set_anim_active(self, anim_name):
+        if hasattr(self, 'animator'):
+            self.animator.anim_active = anim_name
+            self._force_render_frame()
+
     def set_background(self, filepath):
         self.current_bg_path = filepath
         self.settings.lbl_bg_status.setText(f"Fondo: {os.path.basename(filepath)}")
@@ -324,6 +344,7 @@ class MignaDesktopApp(QMainWindow):
         self.game_loop(advance_time=False)
 
     def game_loop(self, advance_time=True):
+        # 1. Avanzar el tiempo general y actualizar fondos de video
         if advance_time:
             self.current_time += 1.0 / 30.0
             if self.mixer.master_duration > 0 and self.current_time >= self.mixer.master_duration:
@@ -332,26 +353,62 @@ class MignaDesktopApp(QMainWindow):
             if self.bg_is_video:
                 self._read_video_frame(seek=False)
         
+        # 2. Obtener datos de reactividad del audio en este frame exacto
         bass, mid, high = self.mixer.get_reactivity(self.current_time)
         
-        current_text = ""
+        # 3. Buscar el segmento activo
+        # Ampliamos el rango de búsqueda usando el transition_time del animador 
+        # para que el texto empiece a hacer "Fade In" o "Shatter" antes de su tiempo de inicio real.
+        active_segment = None
         for seg in self.lyrics_segments:
-            if seg["start"] <= self.current_time <= seg["end"]:
-                current_text = seg["text"]
+            if seg["start"] - self.animator.transition_time <= self.current_time <= seg["end"] + self.animator.transition_time:
+                active_segment = seg
                 break
         
-        if current_text:
+        # 4. Renderizar el texto animado si hay un segmento activo
+        if active_segment and active_segment.get("words"):
             try:
-                rgba_bytes = self.text_engine.render_text_to_bytes(
-                    text=current_text, font_path=self.current_font_path,
-                    font_size=120 + int(bass * 20),
-                    glow_color=(0, 255, 255, int(bass * 255))
+                # A. El animador calcula las matemáticas (posiciones, escalas, rotaciones, colores)
+                anim_state = self.animator.process_segment(
+                    segment=active_segment, 
+                    current_time=self.current_time, 
+                    bass=bass, 
+                    mid=mid, 
+                    high=high
                 )
+                
+                # B. El TextEngine usa esas matemáticas para dibujar el frame
+                rgba_bytes = self.text_engine.render_animated_text_to_bytes(
+                    words_state=anim_state, 
+                    font_path=self.current_font_path,
+                    base_font_size=100
+                )
+                # C. Actualizamos la textura en la tarjeta gráfica
                 self.gl_render.update_text_texture(rgba_bytes, self.text_engine.width, self.text_engine.height)
-            except: pass
+            except Exception as e:
+                print(f"Error en renderizado de texto: {e}")
         else:
+            # Si no hay letra reproduciéndose, enviamos una textura completamente transparente
             empty_bytes = b'\x00' * (1920 * 1080 * 4)
             self.gl_render.update_text_texture(empty_bytes, 1920, 1080)
+
+        # 5. Actualizar los Efectos Visuales Globales (Shaders en GPU)
+        self.gl_render.vfx["scanlines"] = 1.0 if self.settings.chk_scanlines.isChecked() else 0.0
+        self.gl_render.vfx["glitch"] = 1.0 if self.settings.chk_chromatic.isChecked() else 0.0
+        self.gl_render.vfx["invert"] = 1.0 if self.settings.chk_invert.isChecked() and bass > 0.8 else 0.0
+        
+        self.gl_render.time = self.current_time
+        self.gl_render.bass = bass
+        self.gl_render.update()
+        
+        # 6. Actualizar la Interfaz de Usuario (El slider de la línea de tiempo y el reloj)
+        if advance_time:
+            self.slider.blockSignals(True)
+            self.slider.setValue(int(self.current_time * 100))
+            self.slider.blockSignals(False)
+            mins = int(self.current_time // 60)
+            secs = self.current_time % 60
+            self.lbl_time.setText(f"{mins:02d}:{secs:05.2f}")
 
         self.gl_render.vfx["scanlines"] = 1.0 if self.settings.chk_scanlines.isChecked() else 0.0
         self.gl_render.vfx["glitch"] = 1.0 if self.settings.chk_chromatic.isChecked() else 0.0
