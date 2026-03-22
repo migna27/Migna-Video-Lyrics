@@ -7,11 +7,13 @@ class CanvasVideoRenderer(QOpenGLWidget):
         super().__init__(parent)
         self.ctx = None
         
+        # Variables de estado de texturas
         self.pending_text_bytes = None
         self.pending_text_size = None
         self.pending_bg_bytes = None
         self.pending_bg_size = None
         
+        # Variables de control de render
         self.time = 0.0
         self.bass = 0.0
         self.cam_zoom = 1.0
@@ -19,13 +21,23 @@ class CanvasVideoRenderer(QOpenGLWidget):
         self.cam_offset = [0.0, 0.0]
         self.vfx = {"vhs": 0.0, "glitch": 0.0, "scanlines": 0.0, "invert": 0.0}
         self.use_bg = False
-        
-        # VARIABLE DE CONTROL DE CAMARA
         self.camera_enabled = False
 
     def initializeGL(self):
         self.ctx = moderngl.create_context()
         
+        # Geometría de pantalla completa (Full Quad)
+        vertices = np.array([-1.0, -1.0, 1.0, -1.0, -1.0, 1.0, 1.0, 1.0], dtype='f4')
+        self.vbo = self.ctx.buffer(vertices)
+
+        # ----------------------------------------------------------------------
+        # SHADER PRINCIPAL DE MEZCLA (Fondo + Texto con Bloom)
+        # ----------------------------------------------------------------------
+        vertex_shader = """
+            #version 330
+            in vec2 in_vert; out vec2 vUv;
+            void main() { vUv = in_vert * 0.5 + 0.5; gl_Position = vec4(in_vert, 0.0, 1.0); }
+        """
         fragment_shader = """
             #version 330
             uniform float u_time;
@@ -33,6 +45,10 @@ class CanvasVideoRenderer(QOpenGLWidget):
             uniform sampler2D u_text_tex;
             uniform sampler2D u_bg_tex;    
             uniform float u_use_bg;        
+            
+            // Post-procesado (Bloom)
+            uniform sampler2D u_blur_tex_5; // Blur mas ancho (Glow suave)
+            uniform float u_bloom_intensity; // Intensidad del brillo
             
             uniform float u_cam_zoom;
             uniform float u_cam_rotate;
@@ -52,6 +68,7 @@ class CanvasVideoRenderer(QOpenGLWidget):
             }
 
             void main() {
+                // Aplicar Camara y Distorsion (Glitch)
                 vec2 uv = vUv - u_cam_offset;
                 uv = rotateUV(uv, u_cam_rotate, vec2(0.5));
                 uv = (uv - 0.5) / u_cam_zoom + 0.5;
@@ -60,17 +77,30 @@ class CanvasVideoRenderer(QOpenGLWidget):
                     uv.x += sin(uv.y * 50.0 + u_time * 20.0) * 0.02;
                 }
 
+                // Obtener Color de Fondo
                 vec3 bg_color;
                 if (u_use_bg > 0.5) {
                     bg_color = texture(u_bg_tex, vec2(uv.x, 1.0 - uv.y)).rgb;
                 } else {
                     bg_color = vec3(0.05, 0.05, 0.08);
+                    // Fondo reacciona sutilmente al audio
                     bg_color.r += sin(uv.x * 10.0 + u_time) * 0.05 * u_bass;
                 }
 
+                // Obtener Capa de Texto (Original)
                 vec4 text_layer = texture(u_text_tex, vec2(uv.x, 1.0 - uv.y));
-                vec3 final_color = mix(bg_color, text_layer.rgb, text_layer.a);
+                
+                // Obtener Capa de Brillo (Glow suave)
+                vec3 blur_layer = texture(u_blur_tex_5, vec2(uv.x, 1.0 - uv.y)).rgb;
 
+                // --- MEZCLA ADITIVA DE BLOOM ---
+                // Mezclamos el texto original sutilmente con el fondo
+                vec3 final_color = mix(bg_color, text_layer.rgb, text_layer.a);
+                
+                // Añadimos el Glow de forma aditiva sobre la escena completa
+                final_color += blur_layer * text_layer.a * u_bloom_intensity;
+
+                // Efectos finales (VFX)
                 if (u_scanlines > 0.0) {
                     final_color *= (0.9 + 0.1 * sin(uv.y * 1080.0 + u_time * 10.0));
                 }
@@ -79,31 +109,53 @@ class CanvasVideoRenderer(QOpenGLWidget):
                 f_color = vec4(final_color, 1.0);
             }
         """
-        
-        vertex_shader = """
-            #version 330
-            in vec2 in_vert; out vec2 vUv;
-            void main() { vUv = in_vert * 0.5 + 0.5; gl_Position = vec4(in_vert, 0.0, 1.0); }
-        """
-
         self.prog = self.ctx.program(vertex_shader=vertex_shader, fragment_shader=fragment_shader)
-        vertices = np.array([-1.0, -1.0, 1.0, -1.0, -1.0, 1.0, 1.0, 1.0], dtype='f4')
-        self.vbo = self.ctx.buffer(vertices)
         self.vao = self.ctx.vertex_array(self.prog, [(self.vbo, '2f', 'in_vert')])
         
+        # ----------------------------------------------------------------------
+        # SHADER DE DESENFOQUE DE GAUSS (Horizontal y Vertical)
+        # ----------------------------------------------------------------------
+        gaussian_shader = """
+            #version 330
+            uniform sampler2D tex;
+            uniform bool horizontal;
+            uniform float u_spread; // Expansion del desenfoque
+            uniform float u_weight[5] = float[](0.227027, 0.1945946, 0.1216216, 0.054054, 0.016216);
+            in vec2 vUv; out vec4 f_color;
+            void main() {
+                vec2 tex_offset = u_spread / textureSize(tex, 0); 
+                vec3 result = texture(tex, vUv).rgb * u_weight[0]; 
+                if(horizontal) {
+                    for(int i = 1; i < 5; ++i) {
+                        result += texture(tex, vUv + vec2(tex_offset.x * i, 0.0)).rgb * u_weight[i];
+                        result += texture(tex, vUv - vec2(tex_offset.x * i, 0.0)).rgb * u_weight[i];
+                    }
+                } else {
+                    for(int i = 1; i < 5; ++i) {
+                        result += texture(tex, vUv + vec2(0.0, tex_offset.y * i)).rgb * u_weight[i];
+                        result += texture(tex, vUv - vec2(0.0, tex_offset.y * i)).rgb * u_weight[i];
+                    }
+                }
+                f_color = vec4(result, 1.0);
+            }
+        """
+        self.blur_prog = self.ctx.program(vertex_shader=vertex_shader, fragment_shader=gaussian_shader)
+        self.blur_vao = self.ctx.vertex_array(self.blur_prog, [(self.vbo, '2f', 'in_vert')])
+
+        # Texturas de entrada
         self.text_texture = self.ctx.texture((1920, 1080), 4)
         self.bg_texture = self.ctx.texture((1920, 1080), 3)
 
-        self.render_tex = self.ctx.texture((1920, 1080), 4)
-        self.fbo = self.ctx.framebuffer(color_attachments=[self.render_tex])
+        # FBOs temporales para desenfoque (Bloom de multiples pases)
+        self.fbo_ping = self.ctx.framebuffer(color_attachments=[self.ctx.texture((1920, 1080), 3)])
+        self.fbo_pong = self.ctx.framebuffer(color_attachments=[self.ctx.texture((1920, 1080), 3)])
 
+        # Shader final para mostrar en pantalla
         screen_fs = """
             #version 330
             uniform sampler2D tex;
             in vec2 vUv; out vec4 f_color;
-            void main() { 
-                f_color = texture(tex, vec2(vUv.x, vUv.y)); 
-            }
+            void main() { f_color = texture(tex, vec2(vUv.x, vUv.y)); }
         """
         self.screen_prog = self.ctx.program(vertex_shader=vertex_shader, fragment_shader=screen_fs)
         self.screen_vao = self.ctx.vertex_array(self.screen_prog, [(self.vbo, '2f', 'in_vert')])
@@ -121,6 +173,7 @@ class CanvasVideoRenderer(QOpenGLWidget):
     def paintGL(self):
         default_fbo = self.ctx.detect_framebuffer()
 
+        # Actualizar texturas si hay datos nuevos
         if self.pending_text_bytes is not None:
             w, h = self.pending_text_size
             if self.text_texture.size != (w, h):
@@ -137,19 +190,42 @@ class CanvasVideoRenderer(QOpenGLWidget):
             self.bg_texture.write(self.pending_bg_bytes)
             self.pending_bg_bytes = None
 
-        # CONDICION DE MOVIMIENTO DE CAMARA
+        # --- GESTION DE CAMARA (Reactividad) ---
         if self.camera_enabled:
-            if self.bass > 0.8:
-                self.cam_zoom = 1.0 + (self.bass * 0.1)
-            else:
-                self.cam_zoom = 1.0
+            # Camara reacciona sutilmente al audio
+            self.cam_zoom = 1.0 + (self.bass * 0.1) if self.bass > 0.8 else 1.0
             self.cam_offset = [np.sin(self.time) * 0.02, np.cos(self.time * 0.8) * 0.02]
         else:
             self.cam_zoom = 1.0
             self.cam_offset = [0.0, 0.0]
 
-        self.fbo.use()
-        self.fbo.clear(0.0, 0.0, 0.0, 1.0)
+        # ----------------------------------------------------------------------
+        # PASO 1: GENERAR BLOOM (Multi-paso Gaussian Blur en GPU)
+        # ----------------------------------------------------------------------
+        self.ctx.disable(moderngl.BLEND)
+        self.blur_prog['tex'].value = 0
+        
+        # Pases para el FBO_PING (Desenfoque horizontal)
+        self.fbo_ping.use()
+        self.fbo_ping.clear(0, 0, 0, 0)
+        self.text_texture.use(location=0)
+        self.blur_prog['horizontal'].value = True
+        self.blur_prog['u_spread'].value = 2.0 # Spread sutil para el brillo inicial
+        self.blur_vao.render(moderngl.TRIANGLE_STRIP)
+        
+        # Pases para el FBO_PONG (Desenfoque vertical)
+        self.fbo_pong.use()
+        self.fbo_pong.clear(0, 0, 0, 0)
+        self.fbo_ping.color_attachments[0].use(location=0)
+        self.blur_prog['horizontal'].value = False
+        self.blur_vao.render(moderngl.TRIANGLE_STRIP)
+
+        # ----------------------------------------------------------------------
+        # PASO 2: RENDER FINAL Y COMPOSICIÓN (Addtive Blend Bloom)
+        # ----------------------------------------------------------------------
+        # Volvemos a FBO principal para mezclar todo
+        self.fbo_ping.use() 
+        self.fbo_ping.clear(0.0, 0.0, 0.0, 1.0) # Fondo negro base
 
         self.prog['u_time'].value = self.time
         self.prog['u_bass'].value = self.bass
@@ -160,23 +236,26 @@ class CanvasVideoRenderer(QOpenGLWidget):
         self.prog['u_invert'].value = self.vfx.get("invert", 0.0)
         self.prog['u_scanlines'].value = self.vfx.get("scanlines", 0.0)
         self.prog['u_use_bg'].value = 1.0 if self.use_bg else 0.0
+        
+        # Ajustar la intensidad del brillo segun el audio (Requisito: brillar mas con el beat)
+        self.prog['u_bloom_intensity'].value = 1.2 + (self.bass * 2.0) 
 
+        # Asignar texturas al shader principal
         self.text_texture.use(location=0)
         self.prog['u_text_tex'].value = 0
         if self.use_bg:
             self.bg_texture.use(location=1)
             self.prog['u_bg_tex'].value = 1
+        
+        # Usar la textura de brillo difuminada
+        self.fbo_pong.color_attachments[0].use(location=2)
+        self.prog['u_blur_tex_5'].value = 2
 
         self.vao.render(moderngl.TRIANGLE_STRIP)
 
+        # PASO 3: Dibujar FBO final en pantalla
         default_fbo.use()
         default_fbo.clear(0.0, 0.0, 0.0, 1.0)
-        self.render_tex.use(location=0)
+        self.fbo_ping.color_attachments[0].use(location=0)
         self.screen_prog['tex'].value = 0
         self.screen_vao.render(moderngl.TRIANGLE_STRIP)
-
-    def read_pixels(self, width, height):
-        raw = self.fbo.read(components=4, alignment=1)
-        img_np = np.frombuffer(raw, dtype=np.uint8).reshape((1080, 1920, 4))
-        img_flipped = np.flipud(img_np)
-        return img_flipped.tobytes()

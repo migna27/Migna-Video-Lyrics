@@ -1,0 +1,30 @@
+{
+    "in": [
+        "fade_in",
+        "fade_up",
+        "glitch_reveal",
+        "elastic_pop",
+        "blur_reveal",
+        "typewriter",
+        "zoom_basico",
+        "rise_from_void"
+    ],
+    "active": [
+        "scale_pop",
+        "super_glow",
+        "karaoke_sweep",
+        "jitter_nervioso",
+        "color_overdrive",
+        "invert_flash",
+        "shake_glitch",
+        "wave_bounce"
+    ],
+    "out": [
+        "fade_out",
+        "fade_down",
+        "fly_away",
+        "system_failure",
+        "blackout_cut",
+        "zoom_out_collapse"
+    ]
+}

@@ -32,6 +32,7 @@ __pycache__/
 *.ogg
 *.mov
 
+
 # =========================
 # Bases de datos locales (Opcional)
 # =========================
@@ -46,3 +47,4 @@ Thumbs.db
 .vscode/
 .idea/
 db/
+assets/

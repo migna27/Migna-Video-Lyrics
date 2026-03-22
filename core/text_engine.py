@@ -1,5 +1,5 @@
 import os
-from PIL import Image, ImageDraw, ImageFont, ImageFilter
+from PIL import Image, ImageDraw, ImageFont
 
 class TextEngine:
     def __init__(self, width=1920, height=1080):
@@ -8,7 +8,6 @@ class TextEngine:
         self._font_cache = {} 
 
     def _get_font(self, font_path, size):
-        """Obtiene la fuente de la cache en lugar de leer el disco duro cada vez."""
         key = (font_path, size)
         if key not in self._font_cache:
             try:
@@ -20,15 +19,10 @@ class TextEngine:
                 self._font_cache[key] = ImageFont.load_default()
         return self._font_cache[key]
 
-    # SE AÑADIO color_hex COMO PARAMETRO POR DEFECTO BLANCO
-    def render_animated_text_to_bytes(self, words_state, font_path, base_font_size=80, is_preview=False, color_hex="#FFFFFF"):
+    def render_animated_text_to_bytes(self, words_state, font_path, base_font_size=80, is_preview=False):
         img = Image.new('RGBA', (self.width, self.height), (0, 0, 0, 0))
         if not words_state:
             return img.tobytes()
-
-        # CONVERTIR HEX A RGB PARA LA SECCION ACTUAL
-        hex_c = color_hex.lstrip('#')
-        sec_r, sec_g, sec_b = tuple(int(hex_c[i:i+2], 16) for i in (0, 2, 4))
 
         draw = ImageDraw.Draw(img)
         font = self._get_font(font_path, int(base_font_size))
@@ -58,47 +52,21 @@ class TextEngine:
             
             for word_obj in line_data["words"]:
                 w_data = word_obj["data"]
-                original_w = word_obj["w"]
                 
                 visible_text = w_data["text"][:w_data["chars_visible"]]
                 if not visible_text:
-                    current_x += original_w + space_width
+                    current_x += word_obj["w"] + space_width
                     continue
 
-                c_font = font
-                if w_data["scale"] != 1.0:
-                    scaled_size = int(base_font_size * max(0.1, w_data["scale"]))
-                    c_font = self._get_font(font_path, scaled_size)
+                final_x = int(current_x)
+                final_y = int(current_y)
 
-                final_x = int(current_x + w_data["offset_x"])
-                final_y = int(current_y + w_data["offset_y"])
-
-                temp_size = (int(original_w * 2.5), int(word_obj["h"] * 2.5))
-                temp_img = Image.new('RGBA', temp_size, (0, 0, 0, 0))
-                temp_draw = ImageDraw.Draw(temp_img)
+                # Tomamos la tupla de color EXACTA que envia el Animator
+                custom_color = tuple(w_data["color"])
                 
-                cx, cy = temp_size[0]//4, temp_size[1]//4
-                glow_offset = max(2, int(base_font_size * 0.05))
-                
-                # INYECTAMOS EL COLOR DE LA SECCION PERO RESPETAMOS EL ALFA DEL ANIMADOR
-                current_alpha = w_data["color"][3] if len(w_data["color"]) > 3 else 255
-                custom_color = (sec_r, sec_g, sec_b, current_alpha)
-                
-                if w_data.get("ghost_trail") and not is_preview:
-                    temp_draw.text((cx - 20, cy), visible_text, font=c_font, fill=(sec_r, sec_g, sec_b, int(current_alpha * 0.3)))
-                    temp_draw.text((cx + 20, cy), visible_text, font=c_font, fill=(sec_r, sec_g, sec_b, int(current_alpha * 0.3)))
+                draw.text((final_x, final_y), visible_text, font=font, fill=custom_color)
 
-                temp_draw.text((cx + glow_offset, cy + glow_offset), visible_text, font=c_font, fill=w_data["glow_color"])
-                temp_draw.text((cx, cy), visible_text, font=c_font, fill=custom_color)
-
-                if w_data.get("glow_radius", 0) > 0 and not is_preview:
-                    temp_img = temp_img.filter(ImageFilter.GaussianBlur(w_data["glow_radius"]))
-
-                if w_data["rotation"] != 0:
-                    temp_img = temp_img.rotate(w_data["rotation"], resample=Image.BICUBIC, center=(cx + original_w//2, cy + word_obj["h"]//2))
-
-                img.alpha_composite(temp_img, (final_x - cx, final_y - cy))
-                current_x += original_w + space_width
+                current_x += word_obj["w"] + space_width
             
             current_y += line_data["height"] + 15
 
