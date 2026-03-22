@@ -7,13 +7,11 @@ class CanvasVideoRenderer(QOpenGLWidget):
         super().__init__(parent)
         self.ctx = None
         
-        # Buffers temporales para seguridad de hilos
         self.pending_text_bytes = None
         self.pending_text_size = None
         self.pending_bg_bytes = None
         self.pending_bg_size = None
         
-        # Estado Global
         self.time = 0.0
         self.bass = 0.0
         self.cam_zoom = 1.0
@@ -21,11 +19,13 @@ class CanvasVideoRenderer(QOpenGLWidget):
         self.cam_offset = [0.0, 0.0]
         self.vfx = {"vhs": 0.0, "glitch": 0.0, "scanlines": 0.0, "invert": 0.0}
         self.use_bg = False
+        
+        # VARIABLE DE CONTROL DE CAMARA
+        self.camera_enabled = False
 
     def initializeGL(self):
         self.ctx = moderngl.create_context()
         
-        # --- SHADER PRINCIPAL (Video 1920x1080) ---
         fragment_shader = """
             #version 330
             uniform float u_time;
@@ -56,12 +56,10 @@ class CanvasVideoRenderer(QOpenGLWidget):
                 uv = rotateUV(uv, u_cam_rotate, vec2(0.5));
                 uv = (uv - 0.5) / u_cam_zoom + 0.5;
 
-                // Glitch
                 if (u_glitch > 0.0 && u_bass > 0.7) {
                     uv.x += sin(uv.y * 50.0 + u_time * 20.0) * 0.02;
                 }
 
-                // Fondo
                 vec3 bg_color;
                 if (u_use_bg > 0.5) {
                     bg_color = texture(u_bg_tex, vec2(uv.x, 1.0 - uv.y)).rgb;
@@ -70,11 +68,9 @@ class CanvasVideoRenderer(QOpenGLWidget):
                     bg_color.r += sin(uv.x * 10.0 + u_time) * 0.05 * u_bass;
                 }
 
-                // Texto
                 vec4 text_layer = texture(u_text_tex, vec2(uv.x, 1.0 - uv.y));
                 vec3 final_color = mix(bg_color, text_layer.rgb, text_layer.a);
 
-                // Scanlines & Invert
                 if (u_scanlines > 0.0) {
                     final_color *= (0.9 + 0.1 * sin(uv.y * 1080.0 + u_time * 10.0));
                 }
@@ -101,14 +97,11 @@ class CanvasVideoRenderer(QOpenGLWidget):
         self.render_tex = self.ctx.texture((1920, 1080), 4)
         self.fbo = self.ctx.framebuffer(color_attachments=[self.render_tex])
 
-        # --- SHADER SECUNDARIO (Proyección en pantalla) ---
-        # Aplicamos una pequeña corrección de volteo vertical aquí si es necesario para PyQt
         screen_fs = """
             #version 330
             uniform sampler2D tex;
             in vec2 vUv; out vec4 f_color;
             void main() { 
-                
                 f_color = texture(tex, vec2(vUv.x, vUv.y)); 
             }
         """
@@ -126,10 +119,8 @@ class CanvasVideoRenderer(QOpenGLWidget):
         self.use_bg = True
 
     def paintGL(self):
-        # 0. SOLUCIÓN PREVIEW: Detectar el lienzo activo que está usando PyQt ahora mismo
         default_fbo = self.ctx.detect_framebuffer()
 
-        # 1. Cargar Texturas a la VRAM
         if self.pending_text_bytes is not None:
             w, h = self.pending_text_size
             if self.text_texture.size != (w, h):
@@ -146,14 +137,17 @@ class CanvasVideoRenderer(QOpenGLWidget):
             self.bg_texture.write(self.pending_bg_bytes)
             self.pending_bg_bytes = None
 
-        # 2. Cámara virtual
-        if self.bass > 0.8:
-            self.cam_zoom = 1.0 + (self.bass * 0.1)
+        # CONDICION DE MOVIMIENTO DE CAMARA
+        if self.camera_enabled:
+            if self.bass > 0.8:
+                self.cam_zoom = 1.0 + (self.bass * 0.1)
+            else:
+                self.cam_zoom = 1.0
+            self.cam_offset = [np.sin(self.time) * 0.02, np.cos(self.time * 0.8) * 0.02]
         else:
             self.cam_zoom = 1.0
-        self.cam_offset = [np.sin(self.time) * 0.02, np.cos(self.time * 0.8) * 0.02]
+            self.cam_offset = [0.0, 0.0]
 
-        # 3. RENDERIZAR EN EL FBO DE 1920x1080 (Motor de Exportación)
         self.fbo.use()
         self.fbo.clear(0.0, 0.0, 0.0, 1.0)
 
@@ -175,7 +169,6 @@ class CanvasVideoRenderer(QOpenGLWidget):
 
         self.vao.render(moderngl.TRIANGLE_STRIP)
 
-        # 4. SOLUCIÓN PREVIEW: Plasmar el resultado final en el lienzo de PyQt
         default_fbo.use()
         default_fbo.clear(0.0, 0.0, 0.0, 1.0)
         self.render_tex.use(location=0)
@@ -183,13 +176,7 @@ class CanvasVideoRenderer(QOpenGLWidget):
         self.screen_vao.render(moderngl.TRIANGLE_STRIP)
 
     def read_pixels(self, width, height):
-        """Leer FBO y SOLUCIONAR VIDEO DE CABEZA usando Numpy para voltearlo (flipud)"""
         raw = self.fbo.read(components=4, alignment=1)
-        
-        # Convertir bytes a Matriz (Imagen)
         img_np = np.frombuffer(raw, dtype=np.uint8).reshape((1080, 1920, 4))
-        
-        # Voltear verticalmente la imagen para formato MP4
         img_flipped = np.flipud(img_np)
-        
         return img_flipped.tobytes()

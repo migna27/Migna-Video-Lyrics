@@ -1,22 +1,26 @@
-# gui/settings.py
 import os
 from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QTabWidget, QFormLayout, 
-                             QCheckBox, QLabel, QPushButton, QFileDialog, QComboBox)
+                             QCheckBox, QLabel, QPushButton, QFileDialog, QComboBox, QColorDialog)
 from PyQt6.QtCore import pyqtSignal, Qt
+from PyQt6.QtGui import QColor
 
 class SettingsPanel(QWidget):
-    # Señales para medios
+    audio_selected = pyqtSignal(str, str)
     font_selected = pyqtSignal(str)
     background_selected = pyqtSignal(str)
-    audio_selected = pyqtSignal(str, str)
-
-    # NUEVAS: Señales para las animaciones
-    anim_in_changed = pyqtSignal(str)
-    anim_out_changed = pyqtSignal(str)
-    anim_active_changed = pyqtSignal(str)
+    
+    # Nueva senal que se emite cuando se cambia cualquier estilo de una seccion
+    styles_updated = pyqtSignal(dict)
 
     def __init__(self):
         super().__init__()
+        # Diccionario global de estilos por seccion
+        self.section_styles = {
+            "Verso": {"color": "#FFFFFF", "font": "", "anim_in": "fade_in", "anim_active": "scale_pop", "anim_out": "fade_out"},
+            "Pre-coro": {"color": "#00FFFF", "font": "", "anim_in": "glitch_reveal", "anim_active": "jitter_nervioso", "anim_out": "glitch_melt"},
+            "Coro": {"color": "#FF00FF", "font": "", "anim_in": "zoom_basico", "anim_active": "color_overdrive", "anim_out": "zoom_out_collapse"}
+        }
+        self.current_editing_sec = "Verso"
         self.init_ui()
 
     def init_ui(self):
@@ -29,31 +33,26 @@ class SettingsPanel(QWidget):
             QTabBar::tab:selected { background: #333; color: #00ffff; font-weight: bold; border-bottom: 2px solid #00ffff; }
             QTabWidget::pane { border: 1px solid #333; background: #1a1a1a; }
             QComboBox { background: #333; color: white; padding: 5px; border: 1px solid #555; border-radius: 3px; }
-            QComboBox::drop-down { border-left: 1px solid #555; }
         """)
 
-        # --- PESTAÑA 1: MEDIA ---
+        # --- PESTAÑA 1: MEDIA (Global) ---
         tab_media = QWidget()
         media_layout = QVBoxLayout(tab_media)
         
-        btn_audio = QPushButton("🎵 Cargar Pista de Audio (.mp3/.wav)")
-        btn_audio.setStyleSheet("background-color: #0891b2; color: white; font-weight: bold; padding: 12px; border-radius: 4px;")
+        btn_audio = QPushButton("Cargar Audio")
+        btn_audio.setStyleSheet("background-color: #0891b2; color: white; padding: 10px;")
         btn_audio.clicked.connect(self.load_audio)
         self.lbl_audio_status = QLabel("Audio: Ninguno")
-        self.lbl_audio_status.setStyleSheet("color: #00ffff; font-size: 11px; margin-bottom: 10px;")
         
-        btn_font = QPushButton("🔤 Cargar Fuente (.ttf)")
+        btn_font = QPushButton("Cargar Fuente Global")
         btn_font.setStyleSheet("background-color: #333; color: white; padding: 10px;")
         btn_font.clicked.connect(self.load_font)
         self.lbl_font_status = QLabel("Fuente: Default")
         
-        btn_bg = QPushButton("🖼️/🎬 Cargar Fondo (Img/Video)")
+        btn_bg = QPushButton("Cargar Fondo Global")
         btn_bg.setStyleSheet("background-color: #333; color: white; padding: 10px;")
         btn_bg.clicked.connect(self.load_background)
         self.lbl_bg_status = QLabel("Fondo: Ninguno")
-        
-        self.lbl_font_status.setStyleSheet("color: gray; font-size: 10px; margin-bottom: 10px;")
-        self.lbl_bg_status.setStyleSheet("color: gray; font-size: 10px; margin-bottom: 10px;")
 
         media_layout.addWidget(btn_audio)
         media_layout.addWidget(self.lbl_audio_status)
@@ -64,60 +63,100 @@ class SettingsPanel(QWidget):
         media_layout.addStretch()
         self.tabs.addTab(tab_media, "Media")
 
-        # --- PESTAÑA 2: ANIMACIONES (NUEVA) ---
-        tab_anims = QWidget()
-        anims_layout = QFormLayout(tab_anims)
-        anims_layout.setLabelAlignment(Qt.AlignmentFlag.AlignRight)
+        # --- PESTAÑA 2: ESTILOS DE SECCIÓN ---
+        tab_styles = QWidget()
+        styles_layout = QFormLayout(tab_styles)
+        
+        self.combo_sec_select = QComboBox()
+        self.combo_sec_select.addItems(["Verso", "Pre-coro", "Coro"])
+        self.combo_sec_select.currentTextChanged.connect(self.load_section_ui)
 
-        # Dropdown Entrada
+        self.btn_color = QPushButton("Cambiar Color")
+        self.btn_color.clicked.connect(self.pick_color)
+        
+        self.btn_sec_font = QPushButton("Fuente Especifica")
+        self.btn_sec_font.clicked.connect(self.pick_sec_font)
+
+        anim_list_in = ["glitch_reveal", "fade_in", "typewriter", "zoom_basico", "side_sweep"]
+        anim_list_act = ["scale_pop", "karaoke_sweep", "jitter_nervioso", "color_overdrive", "invert_flash"]
+        anim_list_out = ["system_failure", "fade_out", "blackout_cut", "zoom_out_collapse", "glitch_melt"]
+
         self.combo_in = QComboBox()
-        self.combo_in.addItems(["glitch_reveal", "fade_in", "typewriter", "rise_from_void", "neon_flicker_on", "zoom_basico", "word_cascade", "cinematic_blur", "shatter_reverse", "side_sweep"])
-        self.combo_in.currentTextChanged.connect(self.anim_in_changed.emit)
+        self.combo_in.addItems(anim_list_in)
+        self.combo_in.currentTextChanged.connect(lambda v: self.update_sec_prop("anim_in", v))
 
-        # Dropdown Activa (Palabra por palabra)
         self.combo_active = QComboBox()
-        self.combo_active.addItems(["scale_pop", "karaoke_sweep", "jitter_nervioso", "neon_pulse_glow", "invert_flash", "glitch_slice", "wave_bounce", "tilt_yawn", "color_overdrive", "ghost_trail"])
-        self.combo_active.currentTextChanged.connect(self.anim_active_changed.emit)
+        self.combo_active.addItems(anim_list_act)
+        self.combo_active.currentTextChanged.connect(lambda v: self.update_sec_prop("anim_active", v))
 
-        # Dropdown Salida
         self.combo_out = QComboBox()
-        self.combo_out.addItems(["system_failure", "fade_out", "blackout_cut", "neon_flicker_off", "drop_fade", "evaporate", "typewriter_backspace", "zoom_out_collapse", "glitch_melt", "word_scatter"])
-        self.combo_out.currentTextChanged.connect(self.anim_out_changed.emit)
+        self.combo_out.addItems(anim_list_out)
+        self.combo_out.currentTextChanged.connect(lambda v: self.update_sec_prop("anim_out", v))
 
-        anims_layout.addRow(QLabel("<b>Entrada:</b>", styleSheet="color: #ccc;"), self.combo_in)
-        anims_layout.addRow(QLabel("<b>Palabra Activa:</b>", styleSheet="color: #0ff;"), self.combo_active)
-        anims_layout.addRow(QLabel("<b>Salida:</b>", styleSheet="color: #ccc;"), self.combo_out)
-        self.tabs.addTab(tab_anims, "Animaciones")
+        styles_layout.addRow(QLabel("<b>Editar Sección:</b>", styleSheet="color: #0ff;"), self.combo_sec_select)
+        styles_layout.addRow("Color:", self.btn_color)
+        styles_layout.addRow("Tipografía:", self.btn_sec_font)
+        styles_layout.addRow("Anim Entrada:", self.combo_in)
+        styles_layout.addRow("Anim Activa:", self.combo_active)
+        styles_layout.addRow("Anim Salida:", self.combo_out)
+        self.tabs.addTab(tab_styles, "Secciones")
 
         # --- PESTAÑA 3: GLOBAL VFX ---
         tab_vfx = QWidget()
         vfx_layout = QFormLayout(tab_vfx)
-        self.chk_chromatic = QCheckBox("Aberración Cromática")
+        self.chk_chromatic = QCheckBox("Aberracion Cromatica")
         self.chk_scanlines = QCheckBox("Scanlines (VHS)")
         self.chk_invert = QCheckBox("Invertir Colores (Beat)")
+        self.chk_camera = QCheckBox("Movimiento de Camara")
         vfx_layout.addRow(self.chk_chromatic)
         vfx_layout.addRow(self.chk_scanlines)
         vfx_layout.addRow(self.chk_invert)
+        vfx_layout.addRow(self.chk_camera)
         self.tabs.addTab(tab_vfx, "Global VFX")
 
         layout.addWidget(self.tabs)
+        self.load_section_ui("Verso") # Cargar valores iniciales
 
     def load_audio(self):
-        filepath, _ = QFileDialog.getOpenFileName(self, "Seleccionar Audio", "", "Audio Files (*.mp3 *.wav *.ogg)")
+        filepath, _ = QFileDialog.getOpenFileName(self, "Seleccionar Audio", "", "Audio Files (*.mp3 *.wav)")
         if filepath:
-            filename = os.path.basename(filepath)
-            self.lbl_audio_status.setText(f"Audio: {filename}")
-            self.lbl_audio_status.setText(f"Cargando análisis de audio... (espera)")
-            self.audio_selected.emit(filepath, filename)
+            self.lbl_audio_status.setText(f"Audio: {os.path.basename(filepath)}")
+            self.audio_selected.emit(filepath, os.path.basename(filepath))
 
     def load_font(self):
-        filepath, _ = QFileDialog.getOpenFileName(self, "Seleccionar Fuente", "", "Fonts (*.ttf *.otf)")
+        filepath, _ = QFileDialog.getOpenFileName(self, "Fuente", "", "Fonts (*.ttf *.otf)")
         if filepath:
             self.lbl_font_status.setText(f"Fuente: {os.path.basename(filepath)}")
             self.font_selected.emit(filepath)
 
     def load_background(self):
-        filepath, _ = QFileDialog.getOpenFileName(self, "Seleccionar Fondo", "", "Images/Videos (*.png *.jpg *.jpeg *.mp4 *.webm)")
+        filepath, _ = QFileDialog.getOpenFileName(self, "Fondo", "", "Media (*.png *.jpg *.mp4 *.webm)")
         if filepath:
             self.lbl_bg_status.setText(f"Fondo: {os.path.basename(filepath)}")
             self.background_selected.emit(filepath)
+
+    # --- LOGICA DE ESTILOS DE SECCION ---
+    def load_section_ui(self, sec_name):
+        self.current_editing_sec = sec_name
+        styles = self.section_styles[sec_name]
+        
+        self.btn_color.setStyleSheet(f"background-color: {styles['color']}; color: black;")
+        self.combo_in.setCurrentText(styles["anim_in"])
+        self.combo_active.setCurrentText(styles["anim_active"])
+        self.combo_out.setCurrentText(styles["anim_out"])
+
+    def update_sec_prop(self, prop, value):
+        self.section_styles[self.current_editing_sec][prop] = value
+        self.styles_updated.emit(self.section_styles)
+
+    def pick_color(self):
+        color = QColorDialog.getColor()
+        if color.isValid():
+            hex_color = color.name()
+            self.btn_color.setStyleSheet(f"background-color: {hex_color}; color: black;")
+            self.update_sec_prop("color", hex_color)
+
+    def pick_sec_font(self):
+        filepath, _ = QFileDialog.getOpenFileName(self, f"Fuente para {self.current_editing_sec}", "", "Fonts (*.ttf *.otf)")
+        if filepath:
+            self.update_sec_prop("font", filepath)

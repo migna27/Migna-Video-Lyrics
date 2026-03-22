@@ -8,7 +8,7 @@ class TextEngine:
         self._font_cache = {} 
 
     def _get_font(self, font_path, size):
-        """Obtiene la fuente de la caché en lugar de leer el disco duro cada vez."""
+        """Obtiene la fuente de la cache en lugar de leer el disco duro cada vez."""
         key = (font_path, size)
         if key not in self._font_cache:
             try:
@@ -20,14 +20,17 @@ class TextEngine:
                 self._font_cache[key] = ImageFont.load_default()
         return self._font_cache[key]
 
-    def render_animated_text_to_bytes(self, words_state, font_path, base_font_size=80, is_preview=False):
+    # SE AÑADIO color_hex COMO PARAMETRO POR DEFECTO BLANCO
+    def render_animated_text_to_bytes(self, words_state, font_path, base_font_size=80, is_preview=False, color_hex="#FFFFFF"):
         img = Image.new('RGBA', (self.width, self.height), (0, 0, 0, 0))
         if not words_state:
             return img.tobytes()
 
+        # CONVERTIR HEX A RGB PARA LA SECCION ACTUAL
+        hex_c = color_hex.lstrip('#')
+        sec_r, sec_g, sec_b = tuple(int(hex_c[i:i+2], 16) for i in (0, 2, 4))
+
         draw = ImageDraw.Draw(img)
-        
-        # Usar el sistema de caché para la fuente base
         font = self._get_font(font_path, int(base_font_size))
 
         lines_info = {}
@@ -62,7 +65,6 @@ class TextEngine:
                     current_x += original_w + space_width
                     continue
 
-                # Usar el sistema de caché para la fuente escalada dinámicamente
                 c_font = font
                 if w_data["scale"] != 1.0:
                     scaled_size = int(base_font_size * max(0.1, w_data["scale"]))
@@ -78,15 +80,17 @@ class TextEngine:
                 cx, cy = temp_size[0]//4, temp_size[1]//4
                 glow_offset = max(2, int(base_font_size * 0.05))
                 
-                # Desactivar Ghost Trail en el preview para ahorrar CPU
+                # INYECTAMOS EL COLOR DE LA SECCION PERO RESPETAMOS EL ALFA DEL ANIMADOR
+                current_alpha = w_data["color"][3] if len(w_data["color"]) > 3 else 255
+                custom_color = (sec_r, sec_g, sec_b, current_alpha)
+                
                 if w_data.get("ghost_trail") and not is_preview:
-                    temp_draw.text((cx - 20, cy), visible_text, font=c_font, fill=(w_data["color"][0], w_data["color"][1], w_data["color"][2], int(w_data["color"][3] * 0.3)))
-                    temp_draw.text((cx + 20, cy), visible_text, font=c_font, fill=(w_data["color"][0], w_data["color"][1], w_data["color"][2], int(w_data["color"][3] * 0.3)))
+                    temp_draw.text((cx - 20, cy), visible_text, font=c_font, fill=(sec_r, sec_g, sec_b, int(current_alpha * 0.3)))
+                    temp_draw.text((cx + 20, cy), visible_text, font=c_font, fill=(sec_r, sec_g, sec_b, int(current_alpha * 0.3)))
 
                 temp_draw.text((cx + glow_offset, cy + glow_offset), visible_text, font=c_font, fill=w_data["glow_color"])
-                temp_draw.text((cx, cy), visible_text, font=c_font, fill=w_data["color"])
+                temp_draw.text((cx, cy), visible_text, font=c_font, fill=custom_color)
 
-                # Desactivar GaussianBlur en el preview para maximizar FPS (Es el efecto más pesado de procesar)
                 if w_data.get("glow_radius", 0) > 0 and not is_preview:
                     temp_img = temp_img.filter(ImageFilter.GaussianBlur(w_data["glow_radius"]))
 

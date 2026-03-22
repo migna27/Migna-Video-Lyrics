@@ -1,55 +1,77 @@
-import json
 from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QPushButton, 
-                             QListWidget, QLabel, QFileDialog, QMessageBox)
+                             QListWidget, QLineEdit, QDoubleSpinBox, QComboBox)
 from PyQt6.QtCore import pyqtSignal
 
 class TimelineEditor(QWidget):
-    # Señal que envía los datos parseados a main.py
     lyrics_loaded = pyqtSignal(list)
 
     def __init__(self):
         super().__init__()
+        self.segments = []
         self.init_ui()
 
     def init_ui(self):
         layout = QVBoxLayout(self)
-        layout.setContentsMargins(5, 5, 5, 5)
-
-        toolbar = QHBoxLayout()
-        toolbar.addWidget(QLabel("<b>TIMELINE & LYRICS</b>", styleSheet="color: #00ffff;"))
         
-        btn_import_json = QPushButton("📂 Importar JSON")
-        btn_import_json.setStyleSheet("background-color: #0891b2; color: white;")
-        btn_import_json.clicked.connect(self.import_json)
+        input_layout = QHBoxLayout()
+        self.spin_start = QDoubleSpinBox()
+        self.spin_start.setRange(0, 1000)
+        self.spin_start.setDecimals(2)
+        self.spin_start.setPrefix("Inicio: ")
         
-        toolbar.addStretch()
-        toolbar.addWidget(btn_import_json)
-        layout.addLayout(toolbar)
-
+        # Etiqueta de Seccion para esta linea especifica
+        self.combo_section = QComboBox()
+        self.combo_section.addItems(["Ninguna", "Verso", "Pre-coro", "Coro"])
+        self.combo_section.setToolTip("¿Esta linea inicia una nueva seccion musical?")
+        
+        self.input_text = QLineEdit()
+        self.input_text.setPlaceholderText("Letra de la cancion...")
+        
+        self.btn_add = QPushButton("Añadir")
+        self.btn_add.clicked.connect(self.add_segment)
+        
+        input_layout.addWidget(self.spin_start)
+        input_layout.addWidget(self.combo_section)
+        input_layout.addWidget(self.input_text)
+        input_layout.addWidget(self.btn_add)
+        
+        layout.addLayout(input_layout)
+        
         self.list_segments = QListWidget()
-        self.list_segments.setStyleSheet("""
-            QListWidget { background: #111; border: 1px solid #333; }
-            QListWidget::item { padding: 8px; border-bottom: 1px solid #222; color: #ddd; }
-        """)
         layout.addWidget(self.list_segments)
+        
+        btn_delete = QPushButton("Eliminar Seleccionado")
+        btn_delete.clicked.connect(self.delete_segment)
+        layout.addWidget(btn_delete)
 
-    def import_json(self):
-        filepath, _ = QFileDialog.getOpenFileName(self, "Importar JSON de Letras", "", "JSON Files (*.json)")
-        if filepath:
-            try:
-                with open(filepath, 'r', encoding='utf-8') as f:
-                    data = json.load(f)
-                
-                # Asumimos la estructura del proyecto original de React
-                segments = data.get("segments", [])
-                self.list_segments.clear()
-                
-                for seg in segments:
-                    start = seg.get("start", 0)
-                    end = seg.get("end", 0)
-                    text = seg.get("text", "")
-                    self.list_segments.addItem(f"[{start:.2f}s - {end:.2f}s] {text}")
-                
-                self.lyrics_loaded.emit(segments)
-            except Exception as e:
-                QMessageBox.critical(self, "Error", f"No se pudo leer el JSON:\n{str(e)}")
+    def add_segment(self):
+        text = self.input_text.text().strip()
+        if not text: return
+        
+        # El tiempo Final se calculara automaticamente en main.py
+        seg = {
+            "start": self.spin_start.value(),
+            "end": self.spin_start.value() + 2.0, # Valor placeholder
+            "text": text,
+            "words": text.split(),
+            "section_type": self.combo_section.currentText()
+        }
+        
+        self.segments.append(seg)
+        self.input_text.clear()
+        self.lyrics_loaded.emit(self.segments)
+
+    def update_list_ui(self, processed_segments):
+        # Actualiza la lista visible tras procesar el auto-end
+        self.segments = processed_segments
+        self.list_segments.clear()
+        for seg in self.segments:
+            sec = seg.get("section_type", "Ninguna")
+            sec_tag = f"[{sec}]" if sec != "Ninguna" else ""
+            self.list_segments.addItem(f"{seg['start']:.2f}s - {seg['end']:.2f}s {sec_tag} : {seg['text']}")
+
+    def delete_segment(self):
+        row = self.list_segments.currentRow()
+        if row >= 0:
+            self.segments.pop(row)
+            self.lyrics_loaded.emit(self.segments)
