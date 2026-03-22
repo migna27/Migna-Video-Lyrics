@@ -21,7 +21,7 @@ from gui.settings import SettingsPanel
 class MignaDesktopApp(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("AppMigna - Creative Visual Suite")
+        self.setWindowTitle("AppMigna Video lyrics")
         self.resize(1280, 800)
         self.pm = ProjectManager(db_folder="db")
         
@@ -317,7 +317,7 @@ class MignaDesktopApp(QMainWindow):
         self.is_playing = not self.is_playing
         if self.is_playing:
             # CAMBIO AQUÍ: start(0) le dice a PyQt que renderice sin límite de velocidad
-            self.timer.start(0) 
+            self.timer.start(33) 
             self.btn_play.setText("⏸ PAUSE")
             
             layer = self.mixer.layers[0]
@@ -356,9 +356,7 @@ class MignaDesktopApp(QMainWindow):
         # 2. Obtener datos de reactividad del audio en este frame exacto
         bass, mid, high = self.mixer.get_reactivity(self.current_time)
         
-        # 3. Buscar el segmento activo
-        # Ampliamos el rango de búsqueda usando el transition_time del animador 
-        # para que el texto empiece a hacer "Fade In" o "Shatter" antes de su tiempo de inicio real.
+        # 3. Buscar el segmento activo (ampliado con transition_time para animaciones de entrada/salida)
         active_segment = None
         for seg in self.lyrics_segments:
             if seg["start"] - self.animator.transition_time <= self.current_time <= seg["end"] + self.animator.transition_time:
@@ -377,12 +375,14 @@ class MignaDesktopApp(QMainWindow):
                     high=high
                 )
                 
-                # B. El TextEngine usa esas matemáticas para dibujar el frame
+                # B. El TextEngine dibuja la imagen optimizada (desactiva efectos pesados si is_playing es True)
                 rgba_bytes = self.text_engine.render_animated_text_to_bytes(
                     words_state=anim_state, 
                     font_path=self.current_font_path,
-                    base_font_size=100
+                    base_font_size=100,
+                    is_preview=self.is_playing  # <--- NUEVO: Pasa True durante el preview, False al exportar
                 )
+                
                 # C. Actualizamos la textura en la tarjeta gráfica
                 self.gl_render.update_text_texture(rgba_bytes, self.text_engine.width, self.text_engine.height)
             except Exception as e:
@@ -402,22 +402,6 @@ class MignaDesktopApp(QMainWindow):
         self.gl_render.update()
         
         # 6. Actualizar la Interfaz de Usuario (El slider de la línea de tiempo y el reloj)
-        if advance_time:
-            self.slider.blockSignals(True)
-            self.slider.setValue(int(self.current_time * 100))
-            self.slider.blockSignals(False)
-            mins = int(self.current_time // 60)
-            secs = self.current_time % 60
-            self.lbl_time.setText(f"{mins:02d}:{secs:05.2f}")
-
-        self.gl_render.vfx["scanlines"] = 1.0 if self.settings.chk_scanlines.isChecked() else 0.0
-        self.gl_render.vfx["glitch"] = 1.0 if self.settings.chk_chromatic.isChecked() else 0.0
-        self.gl_render.vfx["invert"] = 1.0 if self.settings.chk_invert.isChecked() and bass > 0.8 else 0.0
-        
-        self.gl_render.time = self.current_time
-        self.gl_render.bass = bass
-        self.gl_render.update()
-        
         if advance_time:
             self.slider.blockSignals(True)
             self.slider.setValue(int(self.current_time * 100))
